@@ -1,0 +1,198 @@
+    - 
+      actiontime: 2023-06-19 22:33:56
+      message: "25 I=[174.142.95.88]:44746 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=no DN=\"/CN=ssl.s1394.sureserver.com\": SMTP error from remote mail server after RCPT TO:<zziko2707@gamil.com>: 511 sorry, no mailbox here by that name (#5.1.1 - chkuser) DT=0.000s"
+      recipient: zziko2707@gamil.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:33:39
+      message: "25 I=[174.142.95.88]:35604 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<chaimaelakhaili66@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser d8-20020a05621421c800b0062391476344si269282qvh.383 - gsmtp DT=0.000s"
+      recipient: chaimaelakhaili66@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:33:32
+      message: "25 I=[174.142.95.88]:35498 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<lrssofia75@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser fv8-20020a056214240800b0062df6aef2ebsi282297qvb.142 - gsmtp DT=0.000s"
+      recipient: lrssofia75@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:33:12
+      message: "25 I=[174.142.95.88]:35174 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<meeryemekhaldoune@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser e7-20020a0562141d0700b00621308d5be5si270649qvd.503 - gsmtp DT=0.000s"
+      recipient: meeryemekhaldoune@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:25:33
+      message: "25 I=[174.142.95.88]:42078 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=no DN=\"/CN=ssl.s1394.sureserver.com\": SMTP error from remote mail server after RCPT TO:<ezzaoui322@gamil.com>: 511 sorry, no mailbox here by that name (#5.1.1 - chkuser) DT=0.000s"
+      recipient: ezzaoui322@gamil.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:25:26
+      message: "25 I=[174.142.95.88]:33122 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<TahaRechadi2005@gmail.com>: 550-5.2.1 The email account that you tried to reach is disabled. Learn more at\\n550 5.2.1  https://support.google.com/mail/?p=DisabledUser e8-20020ac84e48000000b003f53a28fe05si208484qtw.749 - gsmtp DT=0.000s"
+      recipient: taharechadi2005@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:24:44
+      message: "25 I=[174.142.95.88]:41274 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=no DN=\"/CN=ssl.s1394.sureserver.com\": SMTP error from remote mail server after RCPT TO:<zziko2707@gamil.com>: 511 sorry, no mailbox here by that name (#5.1.1 - chkuser) DT=0.000s"
+      recipient: zziko2707@gamil.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:24:29
+      message: "25 I=[174.142.95.88]:60426 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<chaimaelakhaili66@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser i24-20020a05620a145800b007639d123e23si291417qkl.26 - gsmtp DT=0.000s"
+      recipient: chaimaelakhaili66@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:24:22
+      message: "25 I=[174.142.95.88]:60290 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<lrssofia75@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser p27-20020a05620a15fb00b0074df20fb42bsi287613qkm.13 - gsmtp DT=0.000s"
+      recipient: lrssofia75@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:24:04
+      message: "25 I=[174.142.95.88]:59968 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<meeryemekhaldoune@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser jt3-20020a05621427e300b00631e829b502si271701qvb.359 - gsmtp DT=0.000s"
+      recipient: meeryemekhaldoune@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:22:15
+      message: "25 I=[174.142.95.88]:39692 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=no DN=\"/CN=ssl.s1394.sureserver.com\": SMTP error from remote mail server after RCPT TO:<ezzaoui322@gamil.com>: 511 sorry, no mailbox here by that name (#5.1.1 - chkuser) DT=0.000s"
+      recipient: ezzaoui322@gamil.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:22:07
+      message: "25 I=[174.142.95.88]:38314 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<TahaRechadi2005@gmail.com>: 550-5.2.1 The email account that you tried to reach is disabled. Learn more at\\n550 5.2.1  https://support.google.com/mail/?p=DisabledUser v23-20020a05620a0a9700b007639e2a2bfasi260413qkg.386 - gsmtp DT=0.000s"
+      recipient: taharechadi2005@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:21:28
+      message: "25 I=[174.142.95.88]:38906 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=no DN=\"/CN=ssl.s1394.sureserver.com\": SMTP error from remote mail server after RCPT TO:<zziko2707@gamil.com>: 511 sorry, no mailbox here by that name (#5.1.1 - chkuser) DT=0.000s"
+      recipient: zziko2707@gamil.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:21:12
+      message: "25 I=[174.142.95.88]:37372 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<chaimaelakhaili66@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser h18-20020ac85e12000000b003f9c28f6ec1si211441qtx.576 - gsmtp DT=0.000s"
+      recipient: chaimaelakhaili66@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:21:06
+      message: "25 I=[174.142.95.88]:37266 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<lrssofia75@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser m5-20020ad45dc5000000b0063018d6018fsi266808qvh.230 - gsmtp DT=0.000s"
+      recipient: lrssofia75@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 22:20:46
+      message: "25 I=[174.142.95.88]:36972 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<meeryemekhaldoune@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser a6-20020a05620a16c600b007623a15e9c9si250631qkn.568 - gsmtp DT=0.000s"
+      recipient: meeryemekhaldoune@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 20:38:09
+      message: Sender contact@suptech-sante.ma has an outgoing mail suspension.  Message discarded. DT=0.000s
+      recipient: oussamalegmiri26@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:29:04
+      message: "25 I=[174.142.95.88]:48096 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<abdelelbasghiri@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser i1-20020a37c201000000b0075c8054b528si172282qkm.149 - gsmtp DT=0.000s"
+      recipient: abdelelbasghiri@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:29:17
+      message: "25 I=[174.142.95.88]:51880 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=no DN=\"/CN=serveur105.heberjahiz.com\": SMTP error from remote mail server after RCPT TO:<saraelhasnaoui@icloud.ma>: 550 No Such User Here DT=0.000s"
+      recipient: saraelhasnaoui@icloud.ma
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:28:31
+      message: "25 I=[174.142.95.88]:47562 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<ikramlourlham@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser s28-20020a05620a031c00b00757867f2abasi152529qkm.403 - gsmtp DT=0.000s"
+      recipient: ikramlourlham@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:24:43
+      message: "25 I=[174.142.95.88]:53286 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=no DN=\"/CN=ssl.s1394.sureserver.com\": SMTP error from remote mail server after RCPT TO:<chakhmaneilham90@gamil.com>: 511 sorry, no mailbox here by that name (#5.1.1 - chkuser) DT=0.000s"
+      recipient: chakhmaneilham90@gamil.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:24:41
+      message: "25 I=[174.142.95.88]:50564 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<hindelhimri4@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser i25-20020a05620a151900b0075c9c631097si142756qkk.617 - gsmtp DT=0.000s"
+      recipient: hindelhimri4@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:24:41
+      message: "25 I=[174.142.95.88]:37352 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=dane DN=\"/C=DE/ST=Rheinland-Pfalz/L=Montabaur/O=1&1 Mail & Media GmbH/CN=mx.mail.com\": SMTP error from remote mail server after RCPT TO:<douaaredouan1973@mail.com>: 550 Requested action not taken: mailbox unavailable DT=0.000s"
+      recipient: douaaredouan1973@mail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:23:32
+      message: "25 I=[174.142.95.88]:52054 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=no DN=\"/CN=ssl.s1394.sureserver.com\": SMTP error from remote mail server after RCPT TO:<ezzaoui322@gamil.com>: 511 sorry, no mailbox here by that name (#5.1.1 - chkuser) DT=0.000s"
+      recipient: ezzaoui322@gamil.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:23:25
+      message: "25 I=[174.142.95.88]:49254 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<TahaRechadi2005@gmail.com>: 550-5.2.1 The email account that you tried to reach is disabled. Learn more at\\n550 5.2.1  https://support.google.com/mail/?p=DisabledUser 17-20020a05620a071100b0075c9760b545si23354qkc.74 - gsmtp DT=0.000s"
+      recipient: taharechadi2005@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:38:15
+      message: Sender contact@suptech-sante.ma has an outgoing mail suspension.  Message discarded. DT=0.000s
+      recipient: maryemmariam18@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:20:43
+      message: "25 I=[174.142.95.88]:50930 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=no DN=\"/CN=ssl.s1394.sureserver.com\": SMTP error from remote mail server after RCPT TO:<zziko2707@gamil.com>: 511 sorry, no mailbox here by that name (#5.1.1 - chkuser) DT=0.000s"
+      recipient: zziko2707@gamil.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:16:18
+      message: "25 I=[174.142.95.88]:43120 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<chaimaelakhaili66@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser t5-20020a0562140c6500b0062ffa318195si140321qvj.599 - gsmtp DT=0.000s"
+      recipient: chaimaelakhaili66@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:16:11
+      message: "25 I=[174.142.95.88]:42920 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<lrssofia75@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser q12-20020a05622a04cc00b003f68b7f34dcsi108524qtx.340 - gsmtp DT=0.000s"
+      recipient: lrssofia75@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 19:15:51
+      message: "25 I=[174.142.95.88]:42602 X=TLS1.2:ECDHE-ECDSA-AES128-GCM-SHA256:128 CV=yes DN=\"/CN=mx.google.com\": SMTP error from remote mail server after RCPT TO:<meeryemekhaldoune@gmail.com>: 550-5.1.1 The email account that you tried to reach does not exist. Please try\\n550-5.1.1 double-checking the recipient's email address for typos or\\n550-5.1.1 unnecessary spaces. Learn more at\\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser k4-20020ad45be4000000b00625d0d1ec2fsi158315qvc.328 - gsmtp DT=0.000s"
+      recipient: meeryemekhaldoune@gmail.com
+      sender: contact@suptech-sante.ma
+      senderip: 174.142.95.88
+    - 
+      actiontime: 2023-06-19 14:28:00
+      message: "25 I=[174.142.95.88]:33590 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=yes DN=\"/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=mail.protection.outlook.com\": SMTP error from remote mail server after RCPT TO:<outlook_073a23eef3a04771@outlook.com>: 550 5.5.0 Requested action not taken: mailbox unavailable (S2017062302). DT=0.000s"
+      recipient: outlook_073a23eef3a04771@outlook.com
+      sender: contact@suptech-sante.ma
+      senderip: 105.159.131.23
+    - 
+      actiontime: 2023-06-19 14:26:49
+      message: "25 I=[174.142.95.88]:53748 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=yes DN=\"/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=mail.protection.outlook.com\": SMTP error from remote mail server after RCPT TO:<outlook_073a23eef3a04771@outlook.com>: 550 5.5.0 Requested action not taken: mailbox unavailable (S2017062302). DT=0.000s"
+      recipient: outlook_073a23eef3a04771@outlook.com
+      sender: contact@suptech-sante.ma
+      senderip: 105.159.131.23
+    - 
+      actiontime: 2023-06-19 14:25:24
+      message: "25 I=[174.142.95.88]:53326 X=TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256 CV=yes DN=\"/C=US/ST=Washington/L=Redmond/O=Microsoft Corporation/CN=mail.protection.outlook.com\": SMTP error from remote mail server after RCPT TO:<outlook_073a23eef3a04771@outlook.com>: 550 5.5.0 Requested action not taken: mailbox unavailable (S2017062302). DT=0.000s"
+      recipient: outlook_073a23eef3a04771@outlook.com
+      sender: contact@suptech-sante.ma
+      senderip: 105.159.131.23
