@@ -12,6 +12,7 @@ class bourses extends Model
      * @var array
      */
    protected $fillable = [
+    'code_iscription',
     'Nom',
     'email',
     'cne',

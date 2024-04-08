@@ -60,8 +60,8 @@
           <div class="col-lg-12 col-md-6 text-center ">
           <div class="count-box sector" data-aos="fade-up">
               <i class="bi bi-simple-smile" style="color: #20b38e;"></i>
-              <a href="{{ route('prepa1', ['slug' => App::getLocale()]) }}"><h4>- {{ __('messages.1ere') }} </h4></a>
-              <a href="{{ route('prepa2', ['slug' => App::getLocale()]) }}"><h4>- {{ __('messages.2eme') }} </h4></a>
+              <a href="#"><h4>- {{ __('messages.1ere') }} </h4></a>
+              <a href="#"><h4>- {{ __('messages.2eme') }} </h4></a>
 
             </div>
           </div>

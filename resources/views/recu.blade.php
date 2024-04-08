@@ -74,6 +74,10 @@
 	
 	<table>
 		<tr>
+			<td id="header">Code inscription:</td>
+			<td>{{ $code_inscription}}</td>
+		</tr>
+		<tr>
 			<td id="header">Nom et prénom:</td>
 			<td>{{ $request->input('Nom') }} {{ $request->input('Prenom') }}</td>
 		</tr>

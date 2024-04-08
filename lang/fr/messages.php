@@ -1,6 +1,6 @@
 <?php
      return [
-          'title'=>"Ecole Supérieure de ...",
+          'title'=>"Ecole Supérieure des technologies de l'eau, de l'energie et de développement durable",
 
           //Header
           'formaions' => 'Formations',

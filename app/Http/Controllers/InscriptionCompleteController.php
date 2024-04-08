@@ -9,11 +9,22 @@ use PDF;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\DB;
 
 class InscriptionCompleteController extends Controller
 {
-   
-            public function Insert(Request $request){
+
+public function showcode()
+{
+    // Fetch code_inscription from the bourses table
+    $code_inscription = DB::table('bourses')
+    ->selectRaw("SELECT code_inscription FROM bourses");
+    // Pass the fetched data to the view
+    return view('recu', [
+        'code_inscription' => $code_inscription,
+    ]);
+}
+public function Insert(Request $request){
 
         
 
@@ -219,6 +230,8 @@ if($request->input('radio-group')=='bourse_oui'){
     $Check_Inscription_massar_bourse = bourses::where('cin_massar', $request->cin_massar)
     ->first();
 
+    $code_inscription = date('dmY') . substr(str_shuffle(MD5(microtime())), 0, 4);
+
 
 
     if(!$Check_Inscription) {
@@ -226,6 +239,7 @@ if($request->input('radio-group')=='bourse_oui'){
 
 
         $Inscrire = new Inscrire;
+        $Inscrire->code_iscription = $code_inscription;
         $Inscrire->Nom = $request->Nom;
         $Inscrire->Prenom = $request->Prenom;
         $Inscrire->cni = $request->cin;
@@ -260,9 +274,8 @@ if($request->input('radio-group')=='bourse_oui'){
     if(!$Check_Inscription_cne_bourse && !$Check_Inscription_massar_bourse){
         
         $bourses = new bourses;
-        $bourses->nom_mere_complet= $request->ncm;
-        $bourses->profession_mere = $request->profession_mere;
         $bourses->Nom =$request->Nom;
+        $bourses->code_iscription = $code_inscription;
         $bourses->email = $request->email;
         $bourses->cne = $request->cin;
         $bourses->date_naissance = $request->yyyy.'-'.$request->mm.'-'.$request->dd;
@@ -274,7 +287,9 @@ if($request->input('radio-group')=='bourse_oui'){
         $bourses->Sectors =$request->Sectors; 
         $bourses->type_bourse = $request->type_bourse;
         $bourses->compte_bancaire = $request->compte_bancaire;
-        $bourses->nom_mere_complet = $request->ncm;
+        $bourses->nom_mere_complet= $request->ncm;
+        $bourses->profession_mere = $request->profession_mere;
+        // $bourses->nom_mere_complet = $request->ncm;
         //$bourses->profession_mere = $request->profession_mere;
    
         $bourses->save();
@@ -368,6 +383,7 @@ else if ($request->input('radio-group')=='bourse_non')
 if(!$Check_Inscription){
 
     $Inscrire = new Inscrire;
+    $Inscrire->code_inscription = date('dmY') . substr(str_shuffle(MD5(microtime())), 0, 4);
     $Inscrire->Nom = $request->Nom;
     $Inscrire->Prenom = $request->Prenom;
     $Inscrire->cni = $request->cin;
