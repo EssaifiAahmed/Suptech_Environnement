@@ -54,11 +54,7 @@
         #header{
             background-color:#E0E0E0;
             text-align: center;
-            
-		
-									  font-size: 14px;
-
-            
+			font-size: 14px;
         }
 	</style>
 </head>
@@ -80,7 +76,7 @@
 	<table>
 		<tr>
 			<td id="header">Code inscription:</td>
-			<td>{{ $code_inscription_recu }}</td>
+			<td>{{ $code_inscription_recu_bourse }}</td>
 		</tr>
 		<tr>
 			<td id="header">Nom et prénom:</td>

@@ -355,6 +355,7 @@
           'bourse'=> 'Bourse',
           'id'=> 'Identité',
           'cin2' => "Numéro de carte d'identité nationale ( CIN ) ",
+          'code_inscr' => "Numéro reçu d'inscription ",
           'cne3'=>'Code massar /Numéro de carte d\'identité nationale (CIN)',
 
 

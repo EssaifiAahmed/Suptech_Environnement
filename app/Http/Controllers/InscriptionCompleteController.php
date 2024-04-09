@@ -221,9 +221,6 @@ if($request->input('radio-group')=='bourse_oui'){
     ->first();
 
     $code_inscription = date('dmY') . substr(str_shuffle(MD5(microtime())), 0, 4);
-    $code_inscription_recu_non_bourse = DB::table('inscrires')->pluck('code_inscription')->first();
-    $code_inscription_recu = DB::table('inscrires')->pluck('code_inscription')->first();
-    $code_inscription_recu_bource = DB::table('bourses')->pluck('code_inscription')->first();
 
     if(!$Check_Inscription) {
         
@@ -253,8 +250,8 @@ if($request->input('radio-group')=='bourse_oui'){
 
         $Inscrire->save();
 
-
-        $pdf_inscription = PDF::loadView('recu_inscri_with_bource', ['request' => $request, 'code_inscription_recu' => $code_inscription_recu]);
+        $code_inscription_recu_inscri = DB::table('inscrires')->pluck('code_inscription')->first();
+        $pdf_inscription = PDF::loadView('recu_inscri_with_bource', ['request' => $request, 'code_inscription_recu_inscri' => $code_inscription_recu_inscri]);
         $flag_inscription=true;
 
     }
@@ -283,7 +280,8 @@ if($request->input('radio-group')=='bourse_oui'){
         //$bourses->profession_mere = $request->profession_mere;
    
         $bourses->save();
-        $pdf_bourse = PDF::loadView('recu_bourse', ['request' => $request, 'code_inscription_recu_bource' => $code_inscription_recu_bource]);
+        $code_inscription_recu_bourse = DB::table('bourses')->pluck('code_inscription')->first();
+        $pdf_bourse = PDF::loadView('recu_bourse', ['request' => $request, 'code_inscription_recu_bourse' => $code_inscription_recu_bourse]);
         $flag_bourse=true;
         
 
@@ -393,6 +391,7 @@ if(!$Check_Inscription){
     }
     $Inscrire->save();
 
+    $code_inscription_recu_non_bourse = DB::table('inscrires')->pluck('code_inscription')->first();
     $pdf = PDF::loadView('recu', ['request' => $request, 'code_inscription_recu_non_bourse' => $code_inscription_recu_non_bourse]);
     if(session()->get('locale') =='fr'){
         return response()->json([
@@ -440,8 +439,10 @@ if(!$Check_Inscription){
     
     public function CheckUserInscrit(Request $request){
 
-        $Check_Inscription2 = Inscrire::where('cni', $request->cin)
-        ->where('date_naissance', $request->date_naissance)->where('fichier_notes',null)
+        $Check_Inscription2 = Inscrire::where('code_inscription', $request->code_inscription)
+        ->where('cni', $request->cin)
+        ->where('date_naissance', $request->date_naissance)
+        ->where('fichier_notes',null)
             ->first();
         
             $doc_Insc=[
@@ -465,7 +466,7 @@ if(!$Check_Inscription){
             
 
           
-// bach nsavi les données f session : 
+            // bach nsavi les données f session : 
             session()->put('Inscr_auth',true);
             session()->put('cni',$request->cin);
             session()->put('message',$message_Inscr);
@@ -490,6 +491,26 @@ if(!$Check_Inscription){
         }
     }
 
+    public function checkInscription()
+    {
+        $Check_code_inscription = Inscrire::where('code_inscription', $request->code_inscription)->first();
+        if ($Check_code_inscription) {
+            session()->put('code_inscription',$request->code_inscription);
+        } else {
+            if(session()->get('locale') =='fr'){
+            
+            
+                return redirect()->route('Suivi', ['slug' => session()->get('locale')])->with('status', 'Votre code inscription incorrect');
+    
+            
+
+            }else if(session()->get('locale') =='ar'){
+
+                return redirect()->route('Suivi', ['slug' => session()->get('locale')])->with('status', 'تم رفع كل ملفاتكم/ أنت لست مسجل  ');              
+            }
+        }
+        
+    }
 
     public function downloadNotesFiles($Lang, $userCNI)
     {

@@ -150,20 +150,11 @@ button {
                 </div>
 
                 <div class="tab">
-                  <h6> {{__('messages.cin2')}} </h6>
-                    <p><input type="text" placeholder=" {{__('messages.cin2')}}" name="cin" required></p>    
+                  <h6> {{__('messages.code_inscr')}} </h6>
+                    <p><input type="text" placeholder=" {{__('messages.code_inscr')}}" name="code_inscription" required></p>    
                 </div>
                 
-                <div class="tab">
-                  <h6>{{__('messages.dn')}} </h6>
-                    <p><input type="date" name="date_naissance"  required ></p>      
-                </div>
-
-                @error('CIN')
-                      <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-
-                @error('date_naissance')
+                @error('code_inscription')
                       <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 

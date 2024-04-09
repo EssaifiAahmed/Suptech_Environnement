@@ -150,6 +150,11 @@ button {
                 </div>
 
                 <div class="tab">
+                  <h6> {{__('messages.code_inscr')}} </h6>
+                    <p><input type="text" placeholder=" {{__('messages.code_inscr')}}" name="code_inscription" required></p>    
+                </div>
+
+                <div class="tab">
                   <h6> {{__('messages.cin2')}} </h6>
                     <p><input type="text" placeholder=" {{__('messages.cin2')}}" name="cin" required></p>    
                 </div>

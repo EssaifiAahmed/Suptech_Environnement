@@ -25,9 +25,10 @@ class BourseController extends Controller
 }
 
     public function CheckUserBourse(Request $request){
-        $Check_Inscription = bourses::where('cne', $request->cin)
-        ->where('date_naissance', $request->date_naissance)->where('fichier_complets',null)
-            ->first();
+        $Check_Inscription = bourses::where('code_inscription', $request->code_inscription)
+        ->where('cne', $request->cin)
+        ->where('date_naissance', $request->date_naissance)
+        ->where('fichier_complets',null)->first();
 
         
 
