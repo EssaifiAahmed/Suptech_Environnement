@@ -7,7 +7,7 @@
 		body {
 	
 		
-		 font-size: 14px;
+			font-size: 14px;
 
 		}
 		h2 {
@@ -54,11 +54,7 @@
         #header{
             background-color:#E0E0E0;
             text-align: center;
-            
-		
-									  font-size: 14px;
-
-            
+			font-size: 14px;
         }
 	</style>
 </head>
@@ -78,57 +74,57 @@
 	
 	<table>
 		<tr>
-			<td id="header">Code Inscription:</td>
-			<td>{{ $code_inscription }}</td>
+			<td id="header">Code inscription:</td>
+			<td>{{ $code_inscription_recu}}</td>
 		</tr>
 		<tr>
 			<td id="header">Nom et prénom:</td>
-			<td>{{ $request->Nom }} {{ $request->Prenom }}</td>
+			<td>{{ $request->input('Nom') }} {{ $request->input('Prenom') }}</td>
 		</tr>
 		
 		<tr>
 			<td id="header">Sexe:</td>
-			<td>{{ $request->Sexe }}</td>
+			<td>{{ $request->input('Sexe') }}</td>
 		</tr>
 		
 		<tr>
 			<td id="header" >CIN /Code Massar / N° Passeport:</td>
-			<td>{{ $request->cni }}</td>
+			<td>{{ $request->input('cin_massar') }}</td>
 		</tr>
 		
 		<tr>
 			<td id="header">Adresse:</td>
-			<td>{{ $request->Adresse }}</td>
+			<td>{{ $request->input('adresse') }}</td>
 		</tr>
 		
 		<tr>
 			<td id="header">Nationalité:</td>
-			<td>{{ $request->nat }}</td>
+			<td>{{ $request->input('nat') }}</td>
 		</tr>
 		
 		<tr>
 			 <td id="header">Email:</td>
-			<td>{{ $request->Email }}</td>
+			<td>{{ $request->input('email') }}</td>
 		</tr>
 		
 		<tr>
 			<td id="header">Téléphone:</td>
-			<td>{{ $request->Tele }}</td>
+			<td>{{ $request->input('telephone') }}</td>
 		</tr>
 		
 		<tr>
 			<td id="header" >Dernier Diplôme obtenu / En cours:</td>
-			<td>{{ $request->dip }}</td>
+			<td>{{ $request->input('dip') }}</td>
 		</tr>
 		
 		<tr>
 			<td id="header" >Filière:</td>
-			<td>{{ $request->Filiere }}</td>
+			<td>{{ $request->input('Sectors') }}</td>
 		</tr>
 
 		<tr>
 			<td id="header">Ville:</td>
-			<td>{{ $request->ville }}</td>
+			<td>{{ $request->input('Ville') }}</td>
 		</tr>
 
 	</table>

@@ -885,7 +885,7 @@ Route::get('/{slug}/liibo', function ($slug) {
 
 
 
-Route::get('/{slug}/bourse_inscription',[InscriptionController::class, 'showcode'], function ($slug) {
+Route::get('/{slug}/bourse_inscription', function ($slug) {
   
 error_log($slug);
     if($slug == 'fr'){

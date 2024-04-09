@@ -336,8 +336,8 @@ class BourseController extends Controller
     
     public function getRegisterPDF($slug, $id){
         $request = bourses::findOrFail($id);
-
-        $pdf = PDF::loadView('admin/recu_bourse', compact('request'));
+        $code_inscription_bourse = DB::table('bourses')->pluck('code_inscription')->first();
+        $pdf = PDF::loadView('admin/recu_bourse', ['request' => $request, 'code_inscription_bourse' => $code_inscription_bourse]);
 
         return $pdf->download($request->Nom.'_Bourse.pdf');
     }

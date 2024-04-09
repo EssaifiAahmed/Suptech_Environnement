@@ -14,16 +14,6 @@ use Illuminate\Support\Facades\DB;
 class InscriptionCompleteController extends Controller
 {
 
-public function showcode()
-{
-    // Fetch code_inscription from the bourses table
-    $code_inscription = DB::table('bourses')
-    ->selectRaw("SELECT code_inscription FROM bourses");
-    // Pass the fetched data to the view
-    return view('recu', [
-        'code_inscription' => $code_inscription,
-    ]);
-}
 public function Insert(Request $request){
 
         
@@ -231,15 +221,16 @@ if($request->input('radio-group')=='bourse_oui'){
     ->first();
 
     $code_inscription = date('dmY') . substr(str_shuffle(MD5(microtime())), 0, 4);
-
-
+    $code_inscription_recu_non_bourse = DB::table('inscrires')->pluck('code_inscription')->first();
+    $code_inscription_recu = DB::table('inscrires')->pluck('code_inscription')->first();
+    $code_inscription_recu_bource = DB::table('bourses')->pluck('code_inscription')->first();
 
     if(!$Check_Inscription) {
         
 
 
         $Inscrire = new Inscrire;
-        $Inscrire->code_iscription = $code_inscription;
+        $Inscrire->code_inscription = $code_inscription;
         $Inscrire->Nom = $request->Nom;
         $Inscrire->Prenom = $request->Prenom;
         $Inscrire->cni = $request->cin;
@@ -263,8 +254,7 @@ if($request->input('radio-group')=='bourse_oui'){
         $Inscrire->save();
 
 
-
-        $pdf_inscription = PDF::loadView('recu', compact('request'));
+        $pdf_inscription = PDF::loadView('recu_inscri_with_bource', ['request' => $request, 'code_inscription_recu' => $code_inscription_recu]);
         $flag_inscription=true;
 
     }
@@ -274,8 +264,8 @@ if($request->input('radio-group')=='bourse_oui'){
     if(!$Check_Inscription_cne_bourse && !$Check_Inscription_massar_bourse){
         
         $bourses = new bourses;
+        $bourses->code_inscription = $code_inscription;
         $bourses->Nom =$request->Nom;
-        $bourses->code_iscription = $code_inscription;
         $bourses->email = $request->email;
         $bourses->cne = $request->cin;
         $bourses->date_naissance = $request->yyyy.'-'.$request->mm.'-'.$request->dd;
@@ -293,8 +283,7 @@ if($request->input('radio-group')=='bourse_oui'){
         //$bourses->profession_mere = $request->profession_mere;
    
         $bourses->save();
-        
-        $pdf_bourse = PDF::loadView('recu_bourse', compact('request'));
+        $pdf_bourse = PDF::loadView('recu_bourse', ['request' => $request, 'code_inscription_recu_bource' => $code_inscription_recu_bource]);
         $flag_bourse=true;
         
 
@@ -404,22 +393,18 @@ if(!$Check_Inscription){
     }
     $Inscrire->save();
 
-    $pdf = PDF::loadView('recu', compact('request'));
+    $pdf = PDF::loadView('recu', ['request' => $request, 'code_inscription_recu_non_bourse' => $code_inscription_recu_non_bourse]);
     if(session()->get('locale') =='fr'){
         return response()->json([
            'pdf_inscription' => base64_encode($pdf->output()),
            'message' => 'Votre inscription est bien enregistrée'
-        
        ]);}
 
        if(session()->get('locale') =='ar'){
         return response()->json([
            'pdf_inscription' => base64_encode($pdf->output()),
            'message' => 'تم تسجيل طلبكم بنجاح'
-        
        ]);}
-
-
 } else {
     if (session()->get('locale') =='fr'){
         return response()->json([

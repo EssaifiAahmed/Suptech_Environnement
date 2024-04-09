@@ -13,7 +13,7 @@ class Inscrire extends Model
      * @var array
      */
     protected $fillable = [
-        'code_iscription',
+        'code_inscription',
         'Nom',
         'Prenom',
         'cni',

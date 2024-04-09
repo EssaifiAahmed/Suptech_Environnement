@@ -75,7 +75,7 @@
 	<table>
 		<tr>
 			<td id="header">Code inscription:</td>
-			<td>{{ $code_inscription}}</td>
+			<td>{{ $code_inscription_recu_non_bourse}}</td>
 		</tr>
 		<tr>
 			<td id="header">Nom et prénom:</td>

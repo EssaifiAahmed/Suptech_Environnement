@@ -79,6 +79,10 @@
 	
 	<table>
 		<tr>
+			<td id="header">Code Inscription bourse:</td>
+			<td>{{ $code_inscription_bourse }}</td>
+		</tr>
+		<tr>
 			<td id="header">Nom et prénom:</td>
 			<td>{{ $request->Nom }} {{ $request->Prenom }}</td>
 		</tr>

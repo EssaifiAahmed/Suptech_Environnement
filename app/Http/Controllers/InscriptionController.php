@@ -7,6 +7,7 @@ use App\Models\Inscrire;
 use PDF;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\bourses;
 
 class InscriptionController extends Controller
@@ -65,7 +66,6 @@ class InscriptionController extends Controller
         }
     }
 
-
 public function showRegisters(){
     if(Auth::check()){
         $data = Inscrire::orderBy('id', 'DESC')->get();
@@ -95,17 +95,18 @@ public function bourseInscription(Request $request){
     ->first();
     $Check_Inscription_massar = bourses::where('cin_massar', $request->cin_massar)
     ->first();
+    $code_inscription = date('dmY') . substr(str_shuffle(MD5(microtime())), 0, 4);
+    $code_inscription_recu = DB::table('bourses')->pluck('code_inscription')->first();
 
     if(!$Check_Inscription_cne && !$Check_Inscription_massar ){
 
 
         $bourses = new bourses;
     
-    
-    
         $bourses->nom_mere_complet= $request->ncm;
         $bourses->profession_mere = $request->profession_mere;
         $bourses->Nom =$request->Nom;
+        $bourses->code_inscription = $code_inscription;
         $bourses->email = $request->email;
         $bourses->cne = $request->cin;
         $bourses->date_naissance = $request->date_naissance;
@@ -126,7 +127,7 @@ public function bourseInscription(Request $request){
     
     
     
-        $pdf = PDF::loadView('recu_bourse', compact('request'));
+        $pdf = PDF::loadView('recu_bourse', ['request' => $request, 'code_inscription_recu' => $code_inscription_recu]);
     
         switch($request->profession) {
             case 'Parent commerçant':
@@ -475,8 +476,8 @@ public function bourseInscription(Request $request){
     
     public function getRegisterPDF($slug, $id){
         $request = Inscrire::findOrFail($id);
-
-        $pdf = PDF::loadView('admin/recu', compact('request'));
+        $code_inscription = DB::table('inscrires')->pluck('code_inscription')->first();
+        $pdf = PDF::loadView('admin/recu', ['request' => $request, 'code_inscription' => $code_inscription]);
 
         return $pdf->download($request->Nom.' '. $request->Prenom .'_inscription.pdf');
     }

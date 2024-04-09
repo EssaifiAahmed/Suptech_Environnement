@@ -196,7 +196,7 @@
                             <div class="row">
                                 <div class="col-lg-4 form-group">
                                     <label> <small>{{ __('messages.ncm') }} :</small> </label>
-                                    <input type="text" class="form-control" name="ncm" id="email"
+                                    <input type="text" class="form-control" name="ncm" id="cnm"
                                         placeholder="{{ __('messages.ncm') }}" required>
                                 </div>
 
