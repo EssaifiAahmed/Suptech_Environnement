@@ -54,7 +54,7 @@
           <div class="count-box sector">
               <i class="bi bi-simple-smile" style="color: #20b38e;"></i>
               <a href="{{ route('gee', ['slug' => App::getLocale()]) }}"><h4>- {{ __('messages.gee') }}</h4></a>
-              <a href="{{ route('geer', ['slug' => App::getLocale()]) }}"><h4>- {{ __('messages.gdeer') }}</h4></a>
+              {{-- <a href="{{ route('geer', ['slug' => App::getLocale()]) }}"><h4>- {{ __('messages.gdeer') }}</h4></a> --}}
               <a href="{{ route('geaah', ['slug' => App::getLocale()]) }}"><h4>- {{ __('messages.gdse') }}</h4></a>
             </div>
           </div>

@@ -75,10 +75,7 @@ public function Insert(Request $request){
      <br> • البيانات المصرفية لآخر 6 أشهر لحساباتك الجارية وحسابات التوفير، مصدقة ومختومة من قبل بنكك.<br>
     <br> • آخر 3 كشوفات الرواتب، توضح إجمالي الدخل والصافي والمساهمات الاجتماعية والضريبية، وأي مكافآت أو بدلات إضافية إن وجدت.<br>
     ";
- 
- 
- 
- 
+
      $retraiteMsg_fr="
      • La Carte d’Identité Nationale (CIN) <br>
      • Une attestation de revenu global émise par les services fiscaux pour l'année fiscale en cours.<br>
@@ -96,9 +93,6 @@ public function Insert(Request $request){
      • شهادة بعدم النشاط المهني صادرة عن السلطات المحلية لإثبات عدم ممارستك لنشاط مهني كمتقاعد.
      ";
  
- 
- 
- 
       $Parent_sans_activite_professionnelleMsg_fr=  "
       • La Carte d’Identité Nationale (CIN) <br>
       • Attestation de revenu global délivrée par l'administration fiscale.<br>
@@ -109,10 +103,7 @@ public function Insert(Request $request){
      • شهادة بالدخل الإجمالي المصدرة من إدارة الضرائب.<br>
      • شهادة بعدم النشاط المهني صادرة عن السلطات المحلية.<br>
      ";
-   
- 
-                   
-                 
+
        $Parent_dans_la_profession_liberaleMsg_fr=  "
        • La Carte d’Identité Nationale (CIN) <br>
      • Une attestation de revenu global délivrée par l'administration fiscale.<br>
@@ -135,17 +126,23 @@ public function Insert(Request $request){
      <br> • البيانات المصرفية لآخر 6 أشهر لحساباتك الشخصية والمهنية، مختومة وموقعة من بنكك.
      ";
      
-      $Parent_decede_fr="
-        • La Carte d’Identité Nationale (CIN) Etudiant <br>,
-        • Certificat de décès <br>,
-        • Les relevés bancaires des 6 derniers mois pour vos comptes courants et épargne ou ceux de votre mère ou tout soutien de famille en cas de décès de votre père, certifiés et tamponnés par votre banque
-    ";
+     $Parent_decede_fr=[
+        "Fiche demande de bourse (FDB)",
+        "La Carte d’Identité Nationale (CIN) Etudiant",
+        "certificat de décès",
+        "L'indicateur socio-économique (RSU) de votre mère ou tout soutien de famille en cas de décès de votre père",
+        'une lettre de motivation',
+        'pour les candidats en cycle ingénieur, un relevé de notes de l\'année en cours',
+    ];
             
-    $Parent_decede_ar = 
-        "<br> • بطاقة الهوية الوطنية للطالب (CIN) ,
-        <br> • شهادة الوفاة,
-        <br> • كشف حساب بنكي لآخر 6 أشهر للحسابات الجارية وحسابات التوفير الخاصة بك ، وكذلك حسابات والدتك أو أي معيل في حالة وفاة والدك ، مصدقة ومختومة من البنك الذي تتعامل معه"
-    ;
+    $Parent_decede_ar = [
+        "استمارة طلب المنحة",
+        "بطاقة الهوية الوطنية للطالب (CIN)" ,
+        "شهادة الوفاة",
+        "المؤشر الإجتماعي و الإقتصادي الخاص بوالدتك أو أي معيل في حالة وفاة والدك ",
+        'رسالة تحفيزية',
+        'للمرشحين في دورة الهندسة، نسخة من سجل النقط للسنة الحالية',
+    ];
      
  
       $message_bourse;
@@ -491,25 +488,32 @@ if(!$Check_Inscription){
         }
     }
 
-    public function checkInscription()
-    {
-        $Check_code_inscription = Inscrire::where('code_inscription', $request->code_inscription)->first();
-        if ($Check_code_inscription) {
-            session()->put('code_inscription',$request->code_inscription);
-        } else {
-            if(session()->get('locale') =='fr'){
-            
-            
-                return redirect()->route('Suivi', ['slug' => session()->get('locale')])->with('status', 'Votre code inscription incorrect');
-    
-            
-
-            }else if(session()->get('locale') =='ar'){
-
-                return redirect()->route('Suivi', ['slug' => session()->get('locale')])->with('status', 'تم رفع كل ملفاتكم/ أنت لست مسجل  ');              
+    public function checkInscription(Request $request)
+    {        
+        try {
+            $code_inscr = Inscrire::where('code_inscription', $request->code_inscription)->first();
+            if ($code_inscr) 
+            {
+                return redirect()->route('bourse_inscription', ['slug' => session()->get('locale')]);   
             }
+            else 
+            {
+                $errorMessage = __('Votre code inscription incorrect'); // Default error message in French            
+                // Check session locale and set appropriate error message
+                if(session()->get('locale') =='ar'){
+                    $errorMessage = __('رقم التسجيل الخاص بك غير صحيح');
+                }
+
+                return redirect()->back()->with('status', $errorMessage);
+            }
+        } catch (\Throwable $th) {
+            $th->getMessage();
         }
-        
+    }
+
+    public function indexCheckInscription()
+    {
+        return view('check_bourse');
     }
 
     public function downloadNotesFiles($Lang, $userCNI)

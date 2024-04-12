@@ -206,6 +206,8 @@ Route::match(array('GET', 'POST'), '{slug}/ajoutfichier2{id}', [uploadfiles::cla
 
 
 Route::post('/inscription',[InscriptionCompleteController::class, 'Insert'])->name('InsertTest');
+Route::match(array('GET', 'POST'), '{slug}/check_signup',[InscriptionCompleteController::class, 'checkInscription'])->name('check_signup');
+Route::match(array('GET', 'POST'),'{slug}/index_check_signup',[InscriptionCompleteController::class, 'indexCheckInscription'])->name('index_check_signup');
 Route::view('documents_inscription','documents')->name('documents_inscription');
 
 
@@ -901,6 +903,23 @@ error_log($slug);
     return view('bourse_inscription');
 
 })->name('bourse_inscription');
+
+Route::get('/{slug}/index_check_signup', function ($slug) {
+  
+error_log($slug);
+    if($slug == 'fr'){
+        App::setLocale($slug);
+        session()->put('locale', $slug);
+    }else if($slug == 'ar'){
+
+        App::setLocale($slug);
+        session()->put('locale', $slug);
+    }else{
+        return redirect('/fr');
+    }
+    return view('check_bourse');
+
+})->name('check_bourse');
 
 
 Route::match(array('GET', 'POST'), '{slug}/InsertBourse', [InscriptionController::class, 'bourseInscription'])->name('InsertBourse');

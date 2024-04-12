@@ -166,10 +166,10 @@
                                 </span> <i class="bi bi-chevron-right"></i></a>
 
                             <ul>
-                                <li><a href="{{ route('prepa1', ['slug' => App::getLocale()]) }}">
+                                <li><a href="#">
                                         {{ __('messages.1ere') }}</a></li>
                                 <li><a
-                                        href="{{ route('prepa2', ['slug' => App::getLocale()]) }}">{{ __('messages.2eme') }}</a>
+                                        href="#">{{ __('messages.2eme') }}</a>
                                 </li>
                             </ul>
 
@@ -224,9 +224,9 @@
                                 <li><a
                                         href="{{ route('gee', ['slug' => App::getLocale()]) }}">{{ __('messages.gee') }}</a>
                                 </li>
-                                <li><a
+                                {{-- <li><a
                                         href="{{ route('geer', ['slug' => App::getLocale()]) }}">{{ __('messages.gdeer') }}</a>
-                                </li>
+                                </li> --}}
                                 <li><a
                                         href="{{ route('geer', ['slug' => App::getLocale()]) }}">{{ __('messages.gdse') }}</a>
                                 </li>
@@ -311,7 +311,7 @@
                             class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a
-                                href="{{ route('bourse_inscription', ['slug' => App::getLocale()]) }}">{{ __('messages.DemandeBourse') }}</a>
+                                href="{{ route('check_bourse', ['slug' => App::getLocale()]) }}">{{ __('messages.DemandeBourse') }}</a>
                         </li>
                         <li><a
                                 href="{{ route('Suivi', ['slug' => App::getLocale()]) }}">{{ __('messages.SuiviBourse') }}</a>
