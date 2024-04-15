@@ -896,8 +896,6 @@
 
                             <p><em>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ __('messages.ape2') }}<br>
                                     <a href="#" id="read-more"> {{__('messages.readmore')}}</a>
-
-
                         </div>
                     </div>
                 </div>
