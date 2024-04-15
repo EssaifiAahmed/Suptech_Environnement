@@ -121,6 +121,11 @@
 		    <td id="header" >Filière :</td>
 			<td>{{ $request->Sectors }}</td>
 		</tr>
+
+		<tr>
+		    <td id="header" >Inscription avec bourse :</td>
+			<td>{{ $request->bourse }}</td>
+		</tr>
 		
 		<tr>
 		    <td id="header" >Nom du père:</td>

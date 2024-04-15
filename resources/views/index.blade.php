@@ -881,7 +881,7 @@
 
                 <div class="row ">
                     <div class="col-lg-6 mt-5 mb-5">
-                        <img src="{{ asset('assets/img/about.webp') }}" class="img-fluid " alt="">
+                        <img src="{{ asset('assets/img/suptech_environnement.jpeg') }}" class="img-fluid " alt="">
 
                     </div>
 

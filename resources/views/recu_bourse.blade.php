@@ -123,6 +123,11 @@
 		</tr>
 		
 		<tr>
+			<td id="header" >Inscription avec bourse:</td>
+			<td>{{ $request->input('select_bourse') }}</td>
+		</tr>
+
+		<tr>
 		    <td id="header" >Nom du père:</td>
 			<td>{{ $request->input('nom_pere_complet') }}</td>
 		</tr>

@@ -216,12 +216,35 @@
                                         </option>
                                         <option value="Parent décédé">{{ __('messages.pdec') }} </option>
                                     </select>
+                                </div>
+                            </div>
 
-
+                            <div class="row">
+                                <div class="col-lg-4 form-group">
+                                    <label> <small>{{ __('messages.nct') }} :</small> </label>
+                                    <input type="text" class="form-control" name="nct" id="nct"
+                                        placeholder="{{ __('messages.nct') }}" required>
                                 </div>
 
+                                <div class="col-lg-4 form-group">
+                                    <label> <small>{{ __('messages.profession') }} :</small> </label>
+                                    <select class="form-select" name="profession_tuteur" id="mySeleprofession_merect"
+                                        aria-label="select" required>
+                                        <option disabled selected value> {{ __('messages.profession') }}
+                                        </option>
+                                        <option value="Parent commerçant">{{ __('messages.pcmrct') }} </option>
+                                        <option value="Parent fonctionnaire">{{ __('messages.pfctn') }} </option>
+                                        <option value="Parent salarié">{{ __('messages.psals') }} </option>
+                                        <option value="Parent retraité">{{ __('messages.pret') }} </option>
+                                        <option value="Parent dans la profession libérale">{{ __('messages.psal') }}
+                                        </option>
+                                        <option value="Parent sans activité professionnelle">{{ __('messages.pap') }}
+                                        </option>
+                                        <option value="Parent décédé">aucun tuteur</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <a class="mb-3"> <i class="bi bi-asterisk "></i> {{ __('messages.fst') }} </a> <br>
                                 <div class="col-lg-12 form-group">
                                     <select class="form-select" name="Sectors" aria-label="select" required>
@@ -300,7 +323,6 @@
                                 </div>
 
                             </div>
-
                             <div class="row">
                                 <a class="mb-3"> <i class="bi bi-asterisk "></i> {{ __('messages.possedez_vous') }}
                                 </a> <br>
@@ -319,9 +341,7 @@
 
                                 </div>
 
-                            </div>
-
-
+                            </div> --}}
                         </div>
                         <div class="text-center">
 

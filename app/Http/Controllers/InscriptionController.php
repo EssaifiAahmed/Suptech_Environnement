@@ -120,6 +120,8 @@ public function bourseInscription(Request $request){
         $bourses->compte_bancaire = $request->compte_bancaire;
         $bourses->nom_mere_complet = $request->ncm;
         $bourses->profession_mere = $request->profession_mere;
+        $bourses->nom_complet_tuteur = $request->nct;
+        $bourses->profession_tuteur = $request->profession_tuteur;
     
     
         $bourses->save();
@@ -476,7 +478,7 @@ public function bourseInscription(Request $request){
     
     public function getRegisterPDF($slug, $id){
         $request = Inscrire::findOrFail($id);
-        $code_inscription = DB::table('inscrires')->pluck('code_inscription')->first();
+        $code_inscription = DB::table('inscrires')->pluck('code_inscription')->last();
         $pdf = PDF::loadView('admin/recu', ['request' => $request, 'code_inscription' => $code_inscription]);
 
         return $pdf->download($request->Nom.' '. $request->Prenom .'_inscription.pdf');

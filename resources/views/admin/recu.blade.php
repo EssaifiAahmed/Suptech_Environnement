@@ -127,6 +127,11 @@
 		</tr>
 
 		<tr>
+		    <td id="header" >Inscription avec bourse :</td>
+			<td>{{ $request->bourse }}</td>
+		</tr>
+		
+		<tr>
 			<td id="header">Ville:</td>
 			<td>{{ $request->ville }}</td>
 		</tr>

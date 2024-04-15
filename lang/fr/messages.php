@@ -385,12 +385,13 @@
           'vdebe'=>'Votre demande est bien enregistrée',
           'ldd'=>'Les documents demandés',
           'ncm'=>' Nom Complet mère',
+          'nct'=>' Nom Complet du tuteur (en cas de décès de parents)',
           
           'preinscriptionBourse' => 'Pré-inscription + Demande de bourse',
           'RequestBourse' => 'Demande de bourse',
           'villef'=>'Ville de formation',
           'ppd'=>' Les documents demandés ( du père ) : ',
-          'vvppub'=>'Vous voulez postuler pour une bourse?',
+          'vvppub'=>'Si vous voulez postuler au bourse',
           'agelegal'=>'Vous devez avoir au moins 16 ans' ,
           'CheckFieldMessage' => 'Veuillez remplir le champ de demande de bourse',
           

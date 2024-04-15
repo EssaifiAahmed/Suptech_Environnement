@@ -23,6 +23,7 @@ class Inscrire extends Model
         'Tele',
         'Sexe',
         'Filiere',
+        'bourse',
         'dip',
         'nat',
         'ville',

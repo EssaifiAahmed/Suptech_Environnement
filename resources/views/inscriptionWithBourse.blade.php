@@ -446,27 +446,6 @@
                                                         id="cin" placeholder=" {{ __('messages.cin2') }}  "
                                                         required>
                                                 </div>
-
-
-
-
-                                                <div class="col-lg-4 form-group">
-                                                    <label> <small> {{ __('messages.vvppub') }} </small> </label><br>
-                                                    <label>
-                                                        <input type="radio" name="radio-group" value="bourse_oui">
-                                                        {{ __('messages.oui') }}
-                                                    </label>&nbsp;
-                                                    <label>
-                                                        <input type="radio" name="radio-group" value="bourse_non">
-                                                        {{ __('messages.non') }}
-                                                    </label>
-
-                                                </div>
-
-
-
-                                            </div>
-                                            <div class="row">
                                                 <div class="col-lg-4 form-group">
 
                                                     <label> <small> {{ __('messages.f') }} : </small> </label>
@@ -570,6 +549,8 @@
                                                     </select>
 
                                                 </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-lg-4 form-group">
                                                     <label> <small> {{ __('messages.villef') }} : </small> </label>
                                                     <select class="form-select" name="Ville" id="Ville"
@@ -580,17 +561,27 @@
                                                         <option value="ESSAOUIRA"> ESSAOUIRA</option>
                                                     </select>
                                                 </div>
-
+                                                <div class="col-lg-4 form-group">
+                                                    <label> <small> {{ __('messages.vvppub') }} </small> </label><br>
+                                                    <select class="form-select form-control" name="select_bourse" id="select_bourse">
+                                                        <option value="bourse_oui">{{ __('messages.oui') }}</option>
+                                                        <option value="bourse_non">{{ __('messages.non') }}</option>
+                                                    </select>
+                                                </div>
                                             </div>
+                                            {{-- <label>
+                                                <input type="radio" name="radiogroup" value="bourse_oui">
+                                                {{ __('messages.oui') }}
+                                            </label>&nbsp;
+                                            <label>
+                                                <input type="radio" name="radiogroup" value="bourse_non">
+                                                {{ __('messages.non') }}
+                                            </label> --}}
                                             <!------------>
-
-
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <div class="card">
+                                {{-- <div class="card">
 
                                     <div class="card-header" id="headingTwo">
                                         <h5 class="mb-0">
@@ -756,15 +747,9 @@
                                     </div>
 
 
-                                </div>
-
-
-
-
+                                </div> --}}
                             </div>
-
-
-                            <div class="text-center mt-3">
+                            <div class="text-center mt-5">
 
                                 <button type="submit" id="CheckForm" aria-expanded="false">
 
@@ -1154,54 +1139,54 @@
     <script>
         const radioButtons = document.querySelectorAll('input[name="radio-group"]');
         const input1 = document.getElementById('mySelect5');
-        const input2 = document.getElementById('mySelect6');
-        const input3 = document.getElementById('mySelect7');
-        const input4 = document.getElementById('mySelect8');
-        const input5 = document.getElementById('mySelect9');
-        const input6 = document.getElementById('mySelect10');
+        // const input2 = document.getElementById('mySelect6');
+        // const input3 = document.getElementById('mySelect7');
+        // const input4 = document.getElementById('mySelect8');
+        // const input5 = document.getElementById('mySelect9');
+        // const input6 = document.getElementById('mySelect10');
 
         radioButtons.forEach((button) => {
             button.addEventListener('change', (event) => {
                 if (event.target.value === 'bourse_oui') {
 
-                    const SubmitButton = document.getElementById("CheckForm");
-                    SubmitButton.setAttribute("data-target", "#collapseTwo");
-                    SubmitButton.setAttribute("data-toggle", "collapse");
+                    // const SubmitButton = document.getElementById("CheckForm");
+                    // SubmitButton.setAttribute("data-target", "#collapseTwo");
+                    // SubmitButton.setAttribute("data-toggle", "collapse");
 
                     input1.disabled = false;
-                    input2.disabled = false;
-                    input3.disabled = false;
-                    input4.disabled = false;
-                    input5.disabled = false;
-                    input6.disabled = false;
+                    // input2.disabled = false;
+                    // input3.disabled = false;
+                    // input4.disabled = false;
+                    // input5.disabled = false;
+                    // input6.disabled = false;
 
 
                     input1.required = true;
-                    input2.required = true;
-                    input3.required = true;
-                    input4.required = true;
-                    input5.required = true;
-                    input6.required = true;
+                    // input2.required = true;
+                    // input3.required = true;
+                    // input4.required = true;
+                    // input5.required = true;
+                    // input6.required = true;
 
 
                 } else {
-                    const SubmitButton = document.getElementById("CheckForm");
-                    SubmitButton.removeAttribute("data-target");
-                    SubmitButton.removeAttribute("data-toggle");
+                    // const SubmitButton = document.getElementById("CheckForm");
+                    // SubmitButton.removeAttribute("data-target");
+                    // SubmitButton.removeAttribute("data-toggle");
 
                     input1.disabled = true;
-                    input2.disabled = true;
-                    input3.disabled = true;
-                    input4.disabled = true;
-                    input5.disabled = true;
-                    input6.disabled = true;
+                    // input2.disabled = true;
+                    // input3.disabled = true;
+                    // input4.disabled = true;
+                    // input5.disabled = true;
+                    // input6.disabled = true;
 
                     input1.required = false;
-                    input2.required = false;
-                    input3.required = false;
-                    input4.required = false;
-                    input5.required = false;
-                    input6.required = false;
+                    // input2.required = false;
+                    // input3.required = false;
+                    // input4.required = false;
+                    // input5.required = false;
+                    // input6.required = false;
 
                 }
             });

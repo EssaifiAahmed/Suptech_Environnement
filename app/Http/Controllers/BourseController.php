@@ -164,11 +164,9 @@ class BourseController extends Controller
         $message_bourse;
         $message_bourse_ar;
 
-        if($Check_Inscription){
+        if($Check_Inscription){ 
             $profession = bourses::select('profession')->where('cne', $request->cin)->where('date_naissance', $request->date_naissance)->first();
 
-
-//error_log($profession);
             if($profession->profession == 'Parent commerçant'){
 
                 $message_bourse = $commerçantMsg_fr;
@@ -194,7 +192,7 @@ class BourseController extends Controller
                 $message_bourse = $Parent_decede_fr;
                 $message_bourse_ar= $Parent_decede_ar;
             }
-// bach nsavi les données f session : 
+            // bach nsavi les données f session : 
             session()->put('bourse_auth',true);
             session()->put('cne',$request->cin);
             session()->put('message',$message_bourse);
@@ -250,7 +248,7 @@ class BourseController extends Controller
     
     public function getRegisterPDF($slug, $id){
         $request = bourses::findOrFail($id);
-        $code_inscription_bourse = DB::table('bourses')->pluck('code_inscription')->first();
+        $code_inscription_bourse = DB::table('bourses')->pluck('code_inscription')->last();
         $pdf = PDF::loadView('admin/recu_bourse', ['request' => $request, 'code_inscription_bourse' => $code_inscription_bourse]);
 
         return $pdf->download($request->Nom.'_Bourse.pdf');
