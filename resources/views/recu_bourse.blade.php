@@ -76,7 +76,7 @@
 	<table>
 		<tr>
 			<td id="header">Code inscription:</td>
-			<td>{{ $code_inscription_recu_bourse }}</td>
+			<td>{{ $code_inscription_recu }}</td>
 		</tr>
 		<tr>
 			<td id="header">Nom et prénom:</td>
@@ -116,16 +116,6 @@
 			<td id="header">Téléphone:</td>
 			<td>{{ $request->input('telephone') }}</td>
 		</tr>
-		
-		<tr>
-		    <td id="header" >Filière :</td>
-			<td>{{ $request->input('Sectors') }}</td>
-		</tr>
-		
-		<tr>
-			<td id="header" >Inscription avec bourse:</td>
-			<td>{{ $request->input('select_bourse') }}</td>
-		</tr>
 
 		<tr>
 		    <td id="header" >Nom du père:</td>
@@ -136,20 +126,17 @@
 		    <td id="header" >Profession du père :</td>
 			<td>{{ $request->input('profession') }}</td>
 		</tr>
-		
 
 		<tr>
-		    <td id="header" >En possession de compte bancaire :</td>
-			<td>{{ $request->input('compte_bancaire') }}</td>
+		    <td id="header" >Nom du tuteur:</td>
+			<td>{{ $request->input('nct') }}</td>
 		</tr>
 		
 		<tr>
-			<td id="header">Type de bourse:</td>
-			<td>{{ $request->input('type_bourse') }}</td>
+		    <td id="header" >Profession du père :</td>
+			<td>{{ $request->input('profession_tuteur') }}</td>
 		</tr>
 	</table>
-
-
             <p style= " text-align: left;font-size:14px" >  Fait à Casablanca, le ………………………………………………………… </p>
       <p style= " text-align: left; font-size:14px" >  Je certifie sur l'honneur avoir rempli de manière complète et exacte le formulaire de demande de bourses, en indiquant les professions de mes parents ainsi que le type de bourse souhaité. J'atteste que toutes les informations fournies sont véridiques et que je n'ai pas volontairement omis des éléments importants. Je suis conscient(e) que toute inexactitude ou omission pourrait entraîner le rejet de ma candidature ou la suspension de toute bourse qui me serait accordée par la Commission. Je m'engage donc à fournir des informations précises et à fournir tout document justificatif nécessaire pour étayer ma demande.</p>
         <p style= " text-align: left; font-size:14px" >  Signature précédée de la mention manuscrite « lu et approuvé »</p>

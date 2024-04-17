@@ -85,6 +85,7 @@
 
             border: 1px solid #e03a0666;
         }
+
         button {
             background-color: #4583c8;
             color: #ffffff;
@@ -95,6 +96,7 @@
             font-family: Raleway;
             cursor: pointer
         }
+
         .all-steps {
             text-align: center;
             margin-top: 30px;
@@ -118,6 +120,7 @@
             color: #fff;
             opacity: 1;
         }
+
         .all-steps {
             text-align: center;
             margin-top: 30px;

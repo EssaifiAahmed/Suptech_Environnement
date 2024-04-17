@@ -370,6 +370,15 @@
           'pap'=>'Parent sans activité professionnelle',
           'pdec'=>'Parent décédé',
           'dn'=> 'Date de naissance',
+
+          'tcmrct'=>'Tuteur commerçant',
+          'tfctn'=>'Tuteur fonctionnaire',
+          'tsals'=>'Tuteur salarié',
+          'tret'=>'Tuteur retraité',
+          'tsal'=>'Tuteur dans la profession libérale',
+          'tap'=>'Tuteur sans activité professionnelle',
+          'tdec'=>'Tuteur décédé',
+          'aucunt'=>'Aucun tuteur',
           
           '100'=>'100%',
           '50'=>'50%',
@@ -415,7 +424,7 @@
           'RecuDetailsFooterText1' => 'En utilisant le lien suivant :',
           'RecuDetailsFooterTextContinue' => 'ou vous pouvez cliquer sur le bouton situé en haut de la page intitulé " Suivre ou compléter votre demande " pour accéder à la page de téléchargement des documents.',
           'RecuDetailsFooterText2' => 'Assurez-vous que les documents que vous téléchargez sont clairement lisibles et complets. Ils doivent être au format PDF pour faciliter leur traitement.',
-          'RecuDetailsFooterText3' => "Si vous avez des questions supplémentaires ou si vous rencontrez des problèmes techniques, n'hésitez pas à nous contacter à l'adresse e-mail suivante : contact@suptech-sante.ma",
+          'RecuDetailsFooterText3' => "Si vous avez des questions supplémentaires ou si vous rencontrez des problèmes techniques, n'hésitez pas à nous contacter à l'adresse e-mail suivante : contact@suptech-environnement.ma",
           "Click" => "Ici",
           
           'jour'=>'Jour',

@@ -232,15 +232,15 @@
                                         aria-label="select" required>
                                         <option disabled selected value> {{ __('messages.profession') }}
                                         </option>
-                                        <option value="Parent commerçant">{{ __('messages.pcmrct') }} </option>
-                                        <option value="Parent fonctionnaire">{{ __('messages.pfctn') }} </option>
-                                        <option value="Parent salarié">{{ __('messages.psals') }} </option>
-                                        <option value="Parent retraité">{{ __('messages.pret') }} </option>
-                                        <option value="Parent dans la profession libérale">{{ __('messages.psal') }}
+                                        <option value="Tuteur décédé">{{ __('messages.aucunt') }}</option>
+                                        <option value="Tuteur commerçant">{{ __('messages.tcmrct') }} </option>
+                                        <option value="Tuteur fonctionnaire">{{ __('messages.tfctn') }} </option>
+                                        <option value="Tuteur salarié">{{ __('messages.tsals') }} </option>
+                                        <option value="Tuteur retraité">{{ __('messages.tret') }} </option>
+                                        <option value="Tuteur dans la profession libérale">{{ __('messages.tsal') }}
                                         </option>
-                                        <option value="Parent sans activité professionnelle">{{ __('messages.pap') }}
+                                        <option value="Tuteur sans activité professionnelle">{{ __('messages.tap') }}
                                         </option>
-                                        <option value="Parent décédé">aucun tuteur</option>
                                     </select>
                                 </div>
                             </div>
@@ -444,13 +444,13 @@
                         $("#succes1").show();
                         document.getElementById('response').innerHTML =
                             "<h5 style='color: green; text-align: center;'>{{ __('messages.vdebe') }}</h5> <br> <p> {{ __('messages.RecuDetailsText') }} </p>";
+                        // document.getElementById('response').innerHTML +=
+                        //     "<h5 style='color: black; text-align: session()->get('locale') == 'ar' ? right : left;'>{{ __('messages.DocumentsEtudiant') }} : </h5> <br> <p>    {{ __('messages.CNI') }} .<br> {{ __('messages.FDB') }} .<br> </p>";
+                        // document.getElementById('response').innerHTML +=
+                        //     "<h5 style='color: black; text-align: session()->get('locale') == 'ar' ? right : left;'>{{ __('messages.ppd') }} : </h5> ";
+                        // document.getElementById('response').innerHTML += response.message;
                         document.getElementById('response').innerHTML +=
-                            "<h5 style='color: black; text-align: session()->get('locale') == 'ar' ? right : left;'>{{ __('messages.DocumentsEtudiant') }} : </h5> <br> <p>    {{ __('messages.CNI') }} .<br> {{ __('messages.FDB') }} .<br> </p>";
-                        document.getElementById('response').innerHTML +=
-                            "<h5 style='color: black; text-align: session()->get('locale') == 'ar' ? right : left;'>{{ __('messages.ppd') }} : </h5> ";
-                        document.getElementById('response').innerHTML += response.message;
-                        document.getElementById('response').innerHTML +=
-                            "<br><br> <p> {{ __('messages.RecuDetailsFooterText1') }} <a href='https://suptech-sante.ma/fr/Suivi' target='_blank'>{{ __('messages.Click') }}</a> {{ __('messages.RecuDetailsFooterTextContinue') }} <br> {{ __('messages.RecuDetailsFooterText2') }} <br> {{ __('messages.RecuDetailsFooterText3') }} </p><br> ";
+                            "<br><br> <p> {{ __('messages.RecuDetailsFooterText1') }} <a href='https://suptech-environnement.ma/fr/Suivi' target='_blank'>{{ __('messages.Click') }}</a> {{ __('messages.RecuDetailsFooterTextContinue') }} <br> {{ __('messages.RecuDetailsFooterText2') }} <br> {{ __('messages.RecuDetailsFooterText3') }} </p><br> ";
 
 
                         var pdfData = atob(response.pdf);

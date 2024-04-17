@@ -22,11 +22,10 @@ class bourses extends Model
     'cin_massar',
     'adresse',
     'profession',
-    'Sectors',
-    'type_bourse',
-    'compte_bancaire',
     'nom_mere_complet',
-    'profession_mere'
+    'profession_mere',
+    'nom_tuteur_complet',
+    'profession_tuteur',
    ];
 }
 
