@@ -158,7 +158,7 @@
                     </div>
                     @if (Session::has('locale'))
                         @if (Session::get('locale') == 'fr')
-                            @foreach (session()->get('message') as $msg)
+                            @foreach (Session::get('message') as $msg)
                                 <label>{{ $msg }} </label>
                                 <input class="form-control" name="{{ $msg }}" type="file"
                                     accept="application/pdf" style="padding:6px;" id="file">
@@ -168,8 +168,8 @@
                     @if (Session::has('locale'))
                         @if (Session::get('locale') == 'ar')
                             @php
-                                $message_ar = session()->get('message_ar');
-                                $message = session()->get('message');
+                                $message_ar = Session::get('message_ar');
+                                $message = Session::get('message');
                                 $count = count($message_ar);
                             @endphp
                             @for ($i = 0; $i < $count; $i++)
@@ -183,6 +183,7 @@
                             @endfor
                         @endif
                     @endif
+
                     <div style="overflow:auto;" id="nextprevious">
                         <button type="submit" class="mt-2 d-flex justify-content-center align-items-center"
                             style="width: 100%;">

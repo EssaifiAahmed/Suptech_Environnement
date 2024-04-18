@@ -305,7 +305,7 @@
                         //     "<h5 style='color: black; text-align: session()->get('locale') == 'ar' ? right : left;'>{{ __('messages.DocumentsEtudiant') }} : </h5> <br> <p>    {{ __('messages.CNI') }} .<br> {{ __('messages.FDB') }} .<br> </p>";
                         // document.getElementById('response').innerHTML +=
                         //     "<h5 style='color: black; text-align: session()->get('locale') == 'ar' ? right : left;'>{{ __('messages.ppd') }} : </h5> ";
-                        // document.getElementById('response').innerHTML += response.message;
+                        document.getElementById('response').innerHTML += response.message;
                         document.getElementById('response').innerHTML +=
                             "<br><br> <p> {{ __('messages.RecuDetailsFooterText1') }} <a href='https://suptech-environnement.ma/fr/Suivi' target='_blank'>{{ __('messages.Click') }}</a> {{ __('messages.RecuDetailsFooterTextContinue') }} <br> {{ __('messages.RecuDetailsFooterText2') }} <br> {{ __('messages.RecuDetailsFooterText3') }} </p><br> ";
 

@@ -191,34 +191,27 @@ class BourseController extends Controller
                 ->where('date_naissance', $request->date_naissance)
                 ->first();
 
-            if (($profession->profession == 'Parent décédé')) {
-                $message_bourse = $Parent_decede_fr;
-                $message_bourse_ar = $Parent_decede_ar;
-            } else {
-                if ($profession->profession_tuteur == 'Tuteur commerçant') {
-                    $message_bourse = array_merge($message_bourse, $Tuteur_commerçantMsg_fr);
-                    $message_bourse_ar = array_merge($message_bourse_ar, $Tuteur_commerçantMsg_ar);
-                }
-
-                if ($profession->profession == 'Parent commerçant') {
-                    $message_bourse = array_merge($message_bourse, $commerçantMsg_fr);
-                    $message_bourse_ar = array_merge($message_bourse_ar, $commerçantMsg_ar);
-                } elseif ($profession->profession == 'Parent fonctionnaire') {
-                    $message_bourse = array_merge($message_bourse, $fonctionnaireMsg_fr);
-                    $message_bourse_ar = array_merge($message_bourse_ar, $fonctionnaireMsg_ar);
-                } elseif ($profession->profession == 'Parent salarié') {
-                    $message_bourse = array_merge($message_bourse, $salarieMsg_fr);
-                    $message_bourse_ar = array_merge($message_bourse_ar, $salarieMsg_ar);
-                } elseif ($profession->profession == 'Parent retraité') {
-                    $message_bourse = array_merge($message_bourse, $retraiteMsg_fr);
-                    $message_bourse_ar = array_merge($message_bourse_ar, $retraiteMsg_ar);
-                } elseif ($profession->profession == 'Parent dans la profession libérale') {
-                    $message_bourse = array_merge($message_bourse, $Parent_dans_la_profession_liberaleMsg_fr);
-                    $message_bourse_ar = array_merge($message_bourse_ar, $Parent_dans_la_profession_liberaleMsg_ar);
-                } elseif ($profession->profession == 'Parent sans activité professionnelle') {
-                    $message_bourse = array_merge($message_bourse, $Parent_sans_activite_professionnelleMsg_fr);
-                    $message_bourse_ar = array_merge($message_bourse_ar, $Parent_sans_activite_professionnelleMsg_ar);
-                }
+            if ($profession->profession == 'Père non décédé' && $profession->profession_mere == 'Mère non décédé' && $profession->profession_tuteur == 'Tuteur') {
+                $message_bourse = $parent_existe_avec_titeur_fr;
+                $message_bourse_ar = $parent_existe_avec_titeur_ar;
+            } elseif ($profession->profession == 'Père non décédé' && $profession->profession_mere == 'Mère non décédé' && $profession->profession_tuteur == 'Aucun tuteur') {
+                $message_bourse = $parent_existe_sans_titeur_fr;
+                $message_bourse_ar = $parent_existe_sans_titeur_ar;
+            } elseif ($profession->profession == 'Père décédé' && $profession->profession_mere == 'Mère non décédé' && $profession->profession_tuteur == 'Tuteur') {
+                $message_bourse = $pere_decede_mere_existe_avec_titeur_fr;
+                $message_bourse_ar = $pere_decede_mere_existe_avec_titeur_ar;
+            } elseif ($profession->profession == 'Père décédé' && $profession->profession_mere == 'Mère non décédé' && $profession->profession_tuteur == 'Aucun tuteur') {
+                $message_bourse = $pere_decede_mere_existe_fr;
+                $message_bourse_ar = $pere_decede_mere_existe_ar;
+            } elseif ($profession->profession_mere == 'Mère décédé' && $profession->profession == 'Père non décédé' && $profession->profession_tuteur == 'Aucun tuteur') {
+                $message_bourse = $mere_decede_pere_existe_fr;
+                $message_bourse_ar = $mere_decede_pere_existe_ar;
+            } elseif ($profession->profession_mere == 'Mère décédé' && $profession->profession == 'Père non décédé' && $profession->profession_tuteur == 'Tuteur') {
+                $message_bourse = $mere_decede_pere_existe_avec_titeur_fr;
+                $message_bourse_ar = $mere_decede_pere_existe_avec_titeur_ar;
+            } elseif ($profession->profession == 'Père décédé' && $profession->profession_mere == 'Mère décédé' && $profession->profession_tuteur == 'Tuteur') {
+                $message_bourse = $Parent_decede_avec_tuteur_fr;
+                $message_bourse_ar = $Parent_decede_avec_tuteur_ar;
             }
 
             // Set session data

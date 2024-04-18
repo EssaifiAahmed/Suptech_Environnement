@@ -80,7 +80,7 @@
 		</tr>
 		<tr>
 			<td id="header">Nom et prénom:</td>
-			<td>{{ $request->input('Nom') }} {{ $request->input('Prenom') }}</td>
+			<td>{{ $request->input('Nom') }}</td>
 		</tr>
 		
 		<tr>
@@ -123,8 +123,17 @@
 		</tr>
 		
 		<tr>
-		    <td id="header" >Profession du père :</td>
+		    <td id="header" >Situation du père :</td>
 			<td>{{ $request->input('profession') }}</td>
+		</tr>
+		<tr>
+		    <td id="header" >Nom du mère:</td>
+			<td>{{ $request->input('nom_pere_complet') }}</td>
+		</tr>
+		
+		<tr>
+		    <td id="header" >Situation du mère :</td>
+			<td>{{ $request->input('profession_mere') }}</td>
 		</tr>
 
 		<tr>
@@ -133,7 +142,7 @@
 		</tr>
 		
 		<tr>
-		    <td id="header" >Profession du père :</td>
+		    <td id="header" >Situation du tuteur :</td>
 			<td>{{ $request->input('profession_tuteur') }}</td>
 		</tr>
 	</table>
