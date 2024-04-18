@@ -146,15 +146,10 @@
                                 <input type="text" class="form-control" name="adresse" id="adresse"
                                     placeholder=" {{ __('messages.adresse') }} " required>
                             </div>
-
-
                             <input type="hidden" class="form-control" name="tsrc" id="tsrc" placeholder="tsrc "
                                 pattern="\d+" value="{{ request('tsrc') }}">
 
                         </div>
-
-
-
                         <div class="row">
                             <div class="col-lg-4 form-group">
                                 <label> <small>{{ __('messages.cne3') }} :</small> </label>
@@ -162,37 +157,21 @@
                                     placeholder=" {{ __('messages.cne3') }} " required>
                             </div>
 
-
-
-
                             <div class="col-lg-4 form-group">
                                 <label> <small>{{ __('messages.cmp') }} :</small> </label>
                                 <input type="text" class="form-control" name="nom_pere_complet" id="nom_pere_complet"
                                     placeholder="{{ __('messages.cmp') }}" required>
                             </div>
-
-
-
-
                             <div class="col-lg-4 form-group">
-                                <label> <small>{{ __('messages.profession') }} :</small> </label>
+                                <label> <small>{{ __('messages.Etat') }} :</small> </label>
                                 <select class="form-select" name="profession" id="mySelect" aria-label="select"
                                     required>
-                                    <option disabled selected value> {{ __('messages.profession') }}
+                                    <option disabled selected value> {{ __('messages.Etat') }}
                                     </option>
-                                    <option value="Parent commerçant">{{ __('messages.pcmrct') }} </option>
-                                    <option value="Parent fonctionnaire">{{ __('messages.pfctn') }} </option>
-                                    <option value="Parent salarié">{{ __('messages.psals') }} </option>
-                                    <option value="Parent retraité">{{ __('messages.pret') }} </option>
-                                    <option value="Parent dans la profession libérale">{{ __('messages.psal') }}
-                                    </option>
-                                    <option value="Parent sans activité professionnelle">{{ __('messages.pap') }}
-                                    </option>
-                                    <option value="Parent décédé">{{ __('messages.pdec') }} </option>
+                                    <option value="Père décédé">{{ __('messages.pdec') }} </option>
+                                    <option value="Père non décédé">{{ __('messages.pndec') }} </option>
                                 </select>
-
                             </div>
-
                             <div class="row">
                                 <div class="col-lg-4 form-group">
                                     <label> <small>{{ __('messages.ncm') }} :</small> </label>
@@ -201,186 +180,55 @@
                                 </div>
 
                                 <div class="col-lg-4 form-group">
-                                    <label> <small>{{ __('messages.profession') }} :</small> </label>
+                                    <label> <small>{{ __('messages.Etat') }} :</small> </label>
                                     <select class="form-select" name="profession_mere" id="mySeleprofession_merect"
                                         aria-label="select" required>
-                                        <option disabled selected value> {{ __('messages.profession') }}
+                                        <option disabled selected value> {{ __('messages.Etat') }}
                                         </option>
-                                        <option value="Parent commerçant">{{ __('messages.pcmrct') }} </option>
-                                        <option value="Parent fonctionnaire">{{ __('messages.pfctn') }} </option>
-                                        <option value="Parent salarié">{{ __('messages.psals') }} </option>
-                                        <option value="Parent retraité">{{ __('messages.pret') }} </option>
-                                        <option value="Parent dans la profession libérale">{{ __('messages.psal') }}
-                                        </option>
-                                        <option value="Parent sans activité professionnelle">{{ __('messages.pap') }}
-                                        </option>
-                                        <option value="Parent décédé">{{ __('messages.pdec') }} </option>
+                                        <option value="Mère décédé">{{ __('messages.mdec') }} </option>
+                                        <option value="Mère non décédé">{{ __('messages.mndec') }} </option>
                                     </select>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-lg-4 form-group">
                                     <label> <small>{{ __('messages.nct') }} :</small> </label>
                                     <input type="text" class="form-control" name="nct" id="nct"
-                                        placeholder="{{ __('messages.nct') }}" required>
+                                        placeholder="{{ __('messages.nct') }}" disabled>
                                 </div>
-
                                 <div class="col-lg-4 form-group">
-                                    <label> <small>{{ __('messages.profession') }} :</small> </label>
-                                    <select class="form-select" name="profession_tuteur" id="mySeleprofession_merect"
-                                        aria-label="select" required>
-                                        <option disabled selected value> {{ __('messages.profession') }}
+                                    <label> <small>{{ __('messages.Etat') }} :</small> </label>
+                                    <select class="form-select" name="profession_tuteur" id="mySeleprofession_tuteur"
+                                        aria-label="select" onchange="toogleInput()" required>
+                                        <option disabled selected value> {{ __('messages.Etat') }}
                                         </option>
-                                        <option value="Tuteur décédé">{{ __('messages.aucunt') }}</option>
-                                        <option value="Tuteur commerçant">{{ __('messages.tcmrct') }} </option>
-                                        <option value="Tuteur fonctionnaire">{{ __('messages.tfctn') }} </option>
-                                        <option value="Tuteur salarié">{{ __('messages.tsals') }} </option>
-                                        <option value="Tuteur retraité">{{ __('messages.tret') }} </option>
-                                        <option value="Tuteur dans la profession libérale">{{ __('messages.tsal') }}
-                                        </option>
-                                        <option value="Tuteur sans activité professionnelle">{{ __('messages.tap') }}
-                                        </option>
+                                        <option value="Aucun tuteur">{{ __('messages.aucunt') }}</option>
+                                        <option value="Tuteur">{{ __('messages.avec') }}</option>
                                     </select>
                                 </div>
                             </div>
-                            {{-- <div class="row">
-                                <a class="mb-3"> <i class="bi bi-asterisk "></i> {{ __('messages.fst') }} </a> <br>
-                                <div class="col-lg-12 form-group">
-                                    <select class="form-select" name="Sectors" aria-label="select" required>
-                                        <option disabled selected value>
-                                            {{ __('messages.f') }} </option>
-
-
-                                        <option disabled value="off">
-                                            {{ __('messages.ccpi') }} </option>
-
-                                        <option value="Classes préparatoires intégrées: 1ère année">
-                                            {{ __('messages.1ere') }}</option>
-
-                                        <option value="Classes préparatoires intégrées: 2ème année">
-                                            {{ __('messages.2eme') }}</option>
-
-
-
-                                        <option disabled value="off">
-                                            {{ __('messages.ingenieur') }}
-                                        </option>
-                                        <option value="Cycle d’ingénieur : Génie de l'Eau et de l'Environnement">
-                                            {{ __('messages.gee') }}</option>
-                                        <option
-                                            value="Cycle ingénieur: Génie digital et intelligence Artificielle en santé">
-                                            {{ __('messages.gdeer') }}</option>
-                                        <option
-                                            value="Cycle ingénieur: Génie Digitale des Système Energétiques">
-                                            {{ __('messages.gdse') }}</option>
-
-                                        <option disabled value="off">
-                                            {{ __('messages.licence') }}</option>
-                                        <option
-                                            value="Licence en Génie de l'Assainissement et des Systèmes de Traitement des Eaux">
-                                            {{ __('messages.gaste') }}</option>
-                                        <option value="Licence en Qualité, Hygiène, Sécurité et Environnement">
-                                            {{ __('messages.qhse') }}</option>
-                                        <option value="Licence en smart Energies Renouvelables">
-                                            {{ __('messages.ser') }}</option>
-                                        <option
-                                            value="Licence en Gestion digitale Intégrée Du Littoral Et Valorisation Halieutique">
-                                            {{ __('messages.gsilvh') }}</option>
-                                        <option disabled value="Licence en Métiers Subaquatiques et Plongée Sous-Marine">
-                                            {{ __('messages.mspsm') }}</option>
-                                        <option
-                                            value="Licence en Métiers Subaquatiques et Plongée Sous-Marine -> Option 1 : Plongeur inspecteur">
-                                            {{ __('messages.mspsm_o1pi') }}</option>
-                                        <option
-                                            value="Licence en Métiers Subaquatiques et Plongée Sous-Marine -> Option 2 : Travaux public, ouvrages">
-                                            {{ __('messages.mspsm_o2tpo') }}</option>
-                                        <option disabled value="off">
-                                            {{ __('messages.cmm') }}</option>
-                                        <option
-                                            value="Master en Génie de l'Eau, de l'Assainissement et des Aménagements Hydroagricoles">
-                                            {{ __('messages.mgeaah') }} </option>
-                                    </select>
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <a class="mb-3"> <i class="bi bi-asterisk "></i> {{ __('messages.tbd') }} </a> <br>
-                                <div class="col-lg-12 form-group">
-
-
-                                    <select class="form-select" name="type_bourse" id="mySelect"
-                                        aria-label="select" required>
-                                        <option disabled selected value> {{ __('messages.tbd') }}
-                                        </option>
-                                        <option value="100%">{{ __('messages.100') }} </option>
-                                        <option value="50%">{{ __('messages.50') }} </option>
-                                        <option value="20%">{{ __('messages.20') }} </option>
-
-                                    </select>
-
-
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <a class="mb-3"> <i class="bi bi-asterisk "></i> {{ __('messages.possedez_vous') }}
-                                </a> <br>
-                                <div class="col-lg-12 form-group">
-
-
-                                    <select class="form-select" name="compte_bancaire" id="mySelect"
-                                        aria-label="select" required>
-                                        <option disabled selected value> {{ __('messages.oui/non') }}
-                                        </option>
-                                        <option value="oui">{{ __('messages.oui') }} </option>
-                                        <option value="non">{{ __('messages.non') }} </option>
-
-                                    </select>
-
-
-                                </div>
-
-                            </div> --}}
                         </div>
                         <div class="text-center">
-
                             <button type="submit">
-
-
                                 <div class="my-class">
                                     <span class="loader"></span>
                                 </div>
-
                                 <div class="msg"> {{ __('messages.inscrire') }} </div>
-
                             </button>
-
-
                         </div>
-
                         <div class="alert alert-success alert-dismissible fade show  m-auto mt-5"
                             style="width:50%; display:none;" id="succes1" role="alert">
                             <strong>
                                 {{ __('messages.success') }}</strong>{{ __('messages.successMsg') }}
-
                         </div>
-
                         <div class="alert alert-danger alert-dismissible fade show  m-auto mt-5"
                             style="width:50% ; display:none;" id="danger" role="alert">
                             <strong>{{ __('messages.echec') }}</strong>
                             {{ __('messages.erreurMsg') }}
-
                         </div>
                     </form>
-
-
                 </div>
-
-
             </div>
-
-
         </div>
     </section><!-- End Contact Us Section -->
 
@@ -393,9 +241,6 @@
             <option value="ar" {{ session()->get('locale') == 'ar' ? 'selected' : '' }}>
                 {{ __('Ar') }}</option>
         </select>
-
-
-
     </div>
 
     </main>
@@ -409,6 +254,18 @@
     <script>
         var loader = document.querySelector('.loader');
         var msg = document.querySelector('.msg');
+
+        function toogleInput() {
+            var selectValue = document.getElementById("mySeleprofession_tuteur").value;
+            var inputField = document.getElementById("nct");
+
+            if (selectValue === "Tuteur") {
+                inputField.disabled = false;
+            } else {
+                inputField.disabled = true;
+            }
+        }
+
         // Hide the <div> element by setting its "display" CSS property to "none"
         loader.style.display = 'none';
         msg.style.display = 'block';
@@ -503,15 +360,15 @@
 
     <script>
         /* Show/hide the "other" input based on the selected option
-              const select = document.getElementById("mySelect");
-              const otherOption = document.getElementById("otherOption");
-              select.addEventListener("change", function() {
-                if (select.value === "other") {
-                  otherOption.style.display = "block";
-                } else {
-                  otherOption.style.display = "none";
-                }
-              });*/
+                      const select = document.getElementById("mySelect");
+                      const otherOption = document.getElementById("otherOption");
+                      select.addEventListener("change", function() {
+                        if (select.value === "other") {
+                          otherOption.style.display = "block";
+                        } else {
+                          otherOption.style.display = "none";
+                        }
+                      });*/
     </script>
     <script>
         $(".changeLang").change(function() {

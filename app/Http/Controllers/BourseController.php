@@ -31,190 +31,155 @@ class BourseController extends Controller
             ->where('date_naissance', $request->date_naissance)
             ->where('fichier_complets', null)->first();
 
-        $commerçantMsg_fr = [
+        $parent_existe_avec_titeur_fr = [
             "Fiche demande de bourse (FDB)",
             "La Carte d’Identité Nationale (CIN) Etudiant",
             'La Carte d’Identité Nationale (CIN) père',
+            'La Carte d’Identité Nationale (CIN) tuteur',
+            'La Carte d’Identité Nationale (CIN) mère',
             'L\'indicateur socio-économique (RSU) de votre père',
+            'L\'indicateur socio-économique (RSU) de votre titeur',
             'une lettre de motivation',
             'pour les candidats en cycle ingénieur, un relevé de notes de l\'année en cours',
         ];
 
-        $commerçantMsg_ar = [
+        $parent_existe_avec_titeur_ar = [
             "استمارة طلب المنحة",
             "بطاقة الهوية الوطنية للطالب (CIN)",
             " بطاقة الهوية الوطنية للأب (CIN)",
-            'المؤشر الإجتماعي و الإقتصادي الخاص بوالدك',
+            " بطاقة الهوية الوطنية للأم (CIN)",
+            " بطاقة الهوية الوطنية للوصي (CIN)",
+            'المؤشر الإجتماعي و الإقتصادي الخاص بالأب',
+            'المؤشر الإجتماعي و الإقتصادي الخاص بالوصي',
             'رسالة تحفيزية',
             'للمرشحين في دورة الهندسة، نسخة من سجل النقط للسنة الحالية',
         ];
 
-        $salarieMsg_fr = [
+        $parent_existe_sans_titeur_fr = [
             "Fiche demande de bourse (FDB)",
             "La Carte d’Identité Nationale (CIN) Etudiant",
             'La Carte d’Identité Nationale (CIN) père',
+            'La Carte d’Identité Nationale (CIN) mère',
             "L'indicateur socio-économique (RSU) de votre père",
             'une lettre de motivation',
             'pour les candidats en cycle ingénieur, un relevé de notes de l\'année en cours',
         ];
 
-        $salarieMsg_ar = [
+        $parent_existe_sans_titeur_ar = [
             "استمارة طلب المنحة",
             "بطاقة الهوية الوطنية للطالب (CIN)",
             " بطاقة الهوية الوطنية للأب (CIN)",
-            'المؤشر الإجتماعي و الإقتصادي الخاص بوالدك',
+            " بطاقة الهوية الوطنية للأم (CIN)",
+            'المؤشر الإجتماعي و الإقتصادي الخاص بالأب',
             'رسالة تحفيزية',
             'للمرشحين في دورة الهندسة، نسخة من سجل النقط للسنة الحالية',
         ];
 
-        $fonctionnaireMsg_fr = [
-            "Fiche demande de bourse (FDB)",
-            "La Carte d’Identité Nationale (CIN) Etudiant",
-            'La Carte d’Identité Nationale (CIN) père',
-            "L'indicateur socio-économique (RSU) de votre père",
-            'une lettre de motivation',
-            'pour les candidats en cycle ingénieur, un relevé de notes de l\'année en cours',
-        ];
-
-        $fonctionnaireMsg_ar = [
-            "استمارة طلب المنحة",
-            "بطاقة الهوية الوطنية للطالب (CIN)",
-            " بطاقة الهوية الوطنية للأب (CIN)",
-            'المؤشر الإجتماعي و الإقتصادي الخاص بوالدك',
-            'رسالة تحفيزية',
-            'للمرشحين في دورة الهندسة، نسخة من سجل النقط للسنة الحالية',
-        ];
-
-        $retraiteMsg_fr = [
-            "Fiche demande de bourse (FDB)",
-            "La Carte d’Identité Nationale (CIN) Etudiant",
-            'La Carte d’Identité Nationale (CIN) père',
-            "L'indicateur socio-économique (RSU) de votre père",
-            'une lettre de motivation',
-            'pour les candidats en cycle ingénieur, un relevé de notes de l\'année en cours',
-        ];
-
-        $retraiteMsg_ar = [
-            "استمارة طلب المنحة",
-            "بطاقة الهوية الوطنية للطالب (CIN)",
-            " بطاقة الهوية الوطنية للأب (CIN)",
-            'المؤشر الإجتماعي و الإقتصادي الخاص بوالدك',
-            'رسالة تحفيزية',
-            'للمرشحين في دورة الهندسة، نسخة من سجل النقط للسنة الحالية',
-        ];
-
-        $Parent_sans_activite_professionnelleMsg_fr = [
-            "Fiche demande de bourse (FDB)",
-            "La Carte d’Identité Nationale (CIN) Etudiant",
-            'La Carte d’Identité Nationale (CIN) père',
-            "L'indicateur socio-économique (RSU) de votre père",
-            'une lettre de motivation',
-            'pour les candidats en cycle ingénieur, un relevé de notes de l\'année en cours',
-        ];
-
-        $Parent_sans_activite_professionnelleMsg_ar = [
-            "استمارة طلب المنحة",
-            "بطاقة الهوية الوطنية للطالب (CIN)",
-            " بطاقة الهوية الوطنية للأب (CIN)",
-            'المؤشر الإجتماعي و الإقتصادي الخاص بوالدك',
-            'رسالة تحفيزية',
-            'للمرشحين في دورة الهندسة، نسخة من سجل النقط للسنة الحالية',
-        ];
-
-        $Parent_dans_la_profession_liberaleMsg_fr = [
-            "Fiche demande de bourse (FDB)",
-            "La Carte d’Identité Nationale (CIN) Etudiant",
-            'La Carte d’Identité Nationale (CIN) père',
-            "L'indicateur socio-économique (RSU) de votre père",
-            'une lettre de motivation',
-            'pour les candidats en cycle ingénieur, un relevé de notes de l\'année en cours',
-        ];
-
-        $Parent_dans_la_profession_liberaleMsg_ar = [
-            "استمارة طلب المنحة",
-            "بطاقة الهوية الوطنية للطالب (CIN)",
-            " بطاقة الهوية الوطنية للأب (CIN)",
-            'المؤشر الإجتماعي و الإقتصادي الخاص بوالدك',
-            'رسالة تحفيزية',
-            'للمرشحين في دورة الهندسة، نسخة من سجل النقط للسنة الحالية',
-        ];
-
-        $Parent_decede_fr = [
+        $pere_decede_mere_existe_avec_titeur_fr = [
             "Fiche demande de bourse (FDB)",
             "La Carte d’Identité Nationale (CIN) Etudiant",
             "certificat de décès",
-            "L'indicateur socio-économique (RSU) de votre mère ou tout soutien de famille en cas de décès de votre père",
+            "La Carte d’Identité Nationale (CIN) mère",
+            "La Carte d’Identité Nationale (CIN) titeur",
+            "L'indicateur socio-économique (RSU) de votre mère",
+            "L'indicateur socio-économique (RSU) de votre titeur",
             'une lettre de motivation',
             'pour les candidats en cycle ingénieur, un relevé de notes de l\'année en cours',
         ];
 
-        $Parent_decede_ar = [
-            "استمارة طلب المنحة(FDB)",
+        $pere_decede_mere_existe_avec_titeur_ar = [
+            "استمارة طلب المنحة",
             "بطاقة الهوية الوطنية للطالب (CIN)",
+            " بطاقة الهوية الوطنية للأم (CIN)",
+            "شهادة الوفاة",
+            " بطاقة الهوية الوطنية للوصي (CIN)",
+            'المؤشر الإجتماعي و الإقتصادي الخاص بالأم',
+            'المؤشر الإجتماعي و الإقتصادي الخاص بالوصي',
             'رسالة تحفيزية',
             'للمرشحين في دورة الهندسة، نسخة من سجل النقط للسنة الحالية',
+        ];
+
+        $pere_decede_mere_existe_fr = [
+            "Fiche demande de bourse (FDB)",
+            "La Carte d’Identité Nationale (CIN) Etudiant",
+            "certificat de décès",
+            'La Carte d’Identité Nationale (CIN) mère',
+            "L'indicateur socio-économique (RSU) de votre mère",
+            'une lettre de motivation',
+            'pour les candidats en cycle ingénieur, un relevé de notes de l\'année en cours',
+        ];
+
+        $pere_decede_mere_existe_ar = [
+            "استمارة طلب المنحة",
+            "بطاقة الهوية الوطنية للطالب (CIN)",
+            " بطاقة الهوية الوطنية للأم (CIN)",
             "شهادة الوفاة",
-            "المؤشر الإجتماعي و الإقتصادي الخاص بوالدتك أو أي معيل في حالة وفاة والدك ",
+            'المؤشر الإجتماعي و الإقتصادي الخاص بالأم',
+            'رسالة تحفيزية',
+            'للمرشحين في دورة الهندسة، نسخة من سجل النقط للسنة الحالية',
         ];
 
-        $Tuteur_commerçantMsg_fr = [
-            'La Carte d’Identité Nationale (CIN) de tuteur',
-            'L\'indicateur socio-économique (RSU) de votre tuteur',
+        $mere_decede_pere_existe_fr = [
+            "Fiche demande de bourse (FDB)",
+            "La Carte d’Identité Nationale (CIN) Etudiant",
+            'La Carte d’Identité Nationale (CIN) père',
+            "certificat de décès",
+            "L'indicateur socio-économique (RSU) de votre père",
+            'une lettre de motivation',
+            'pour les candidats en cycle ingénieur, un relevé de notes de l\'année en cours',
         ];
 
-        $Tuteur_commerçantMsg_ar = [
-            " بطاقة الهوية الوطنية للوصي (CIN)",
-            'المؤشر الإجتماعي و الإقتصادي الخاص بالوصي',
+        $mere_decede_pere_existe_ar = [
+            "استمارة طلب المنحة",
+            "بطاقة الهوية الوطنية للطالب (CIN)",
+            " بطاقة الهوية الوطنية للأب (CIN)",
+            "شهادة الوفاة",
+            'المؤشر الإجتماعي و الإقتصادي الخاص بالأب',
+            'رسالة تحفيزية',
+            'للمرشحين في دورة الهندسة، نسخة من سجل النقط للسنة الحالية',
         ];
 
-        $Tuteur_fonctionnaireMsg_fr = [
-            'La Carte d’Identité Nationale (CIN) de tuteur',
-            'L\'indicateur socio-économique (RSU) de votre tuteur',
+        $mere_decede_pere_existe_avec_titeur_fr = [
+            "Fiche demande de bourse (FDB)",
+            "La Carte d’Identité Nationale (CIN) Etudiant",
+            'La Carte d’Identité Nationale (CIN) père',
+            'La Carte d’Identité Nationale (CIN) tuteur',
+            "certificat de décès",
+            "L'indicateur socio-économique (RSU) de votre père",
+            "L'indicateur socio-économique (RSU) de votre tuteur",
+            'une lettre de motivation',
+            'pour les candidats en cycle ingénieur, un relevé de notes de l\'année en cours',
         ];
 
-        $Tuteur_fonctionnaireMsg_ar = [
-            " بطاقة الهوية الوطنية للوصي (CIN)",
-            'المؤشر الإجتماعي و الإقتصادي الخاص بالوصي',
+        $mere_decede_pere_existe_avec_titeur_ar = [
+            "استمارة طلب المنحة",
+            "بطاقة الهوية الوطنية للطالب (CIN)",
+            " بطاقة الهوية الوطنية للأب (CIN)",
+            "شهادة الوفاة",
+            'المؤشر الإجتماعي و الإقتصادي الخاص بالأب',
+            'المؤشر الإجتماعي و الإقتصادي الخاص الوصي',
+            'رسالة تحفيزية',
+            'للمرشحين في دورة الهندسة، نسخة من سجل النقط للسنة الحالية',
         ];
 
-        $Tuteur_salarieMsg_fr = [
-            'La Carte d’Identité Nationale (CIN) de tuteur',
-            'L\'indicateur socio-économique (RSU) de votre tuteur',
+        $Parent_decede_avec_tuteur_fr = [
+            "Fiche demande de bourse (FDB)",
+            "La Carte d’Identité Nationale (CIN) Etudiant",
+            "certificat de décès de père",
+            "certificat de décès de mère",
+            "L'indicateur socio-économique (RSU) de votre tuteur",
+            'une lettre de motivation',
+            'pour les candidats en cycle ingénieur, un relevé de notes de l\'année en cours',
         ];
 
-        $Tuteur_salarieMsg_ar = [
-            " بطاقة الهوية الوطنية للوصي (CIN)",
-            'المؤشر الإجتماعي و الإقتصادي الخاص بالوصي',
-        ];
-
-        $Tuteur_retraiteMsg_fr = [
-            'La Carte d’Identité Nationale (CIN) de tuteur',
-            'L\'indicateur socio-économique (RSU) de votre tuteur',
-        ];
-
-        $Tuteur_retraiteMsg_ar = [
-            " بطاقة الهوية الوطنية للوصي (CIN)",
-            'المؤشر الإجتماعي و الإقتصادي الخاص بالوصي',
-        ];
-
-        $Tuteur_dans_la_profession_liberaleMsg_fr = [
-            'La Carte d’Identité Nationale (CIN) de tuteur',
-            'L\'indicateur socio-économique (RSU) de votre tuteur',
-        ];
-
-        $Tuteur_dans_la_profession_liberaleMsg_ar = [
-            " بطاقة الهوية الوطنية للوصي (CIN)",
-            'المؤشر الإجتماعي و الإقتصادي الخاص بالوصي',
-        ];
-
-        $Tuteur_sans_activite_professionnelleMsg_fr = [
-            'La Carte d’Identité Nationale (CIN) de tuteur',
-            'L\'indicateur socio-économique (RSU) de votre tuteur',
-        ];
-
-        $Tuteur_sans_activite_professionnelleMsg_ar = [
-            " بطاقة الهوية الوطنية للوصي (CIN)",
-            'المؤشر الإجتماعي و الإقتصادي الخاص بالوصي',
+        $Parent_decede_avec_tuteur_ar = [
+            "استمارة طلب المنحة(FDB)",
+            "بطاقة الهوية الوطنية للطالب (CIN)",
+            "شهادة الوفاة الأب",
+            "شهادة الوفاة الأم",
+            "المؤشر الإجتماعي و الإقتصادي الخاص بالوصي ",
+            'رسالة تحفيزية',
+            'للمرشحين في دورة الهندسة، نسخة من سجل النقط للسنة الحالية',
         ];
 
         $message_bourse;
@@ -226,7 +191,7 @@ class BourseController extends Controller
                 ->where('date_naissance', $request->date_naissance)
                 ->first();
 
-            if ($profession->profession == 'Parent décédé') {
+            if (($profession->profession == 'Parent décédé')) {
                 $message_bourse = $Parent_decede_fr;
                 $message_bourse_ar = $Parent_decede_ar;
             } else {
