@@ -563,7 +563,8 @@
                                                 </div>
                                                 <div class="col-lg-4 form-group">
                                                     <label> <small> {{ __('messages.vvppub') }} </small> </label><br>
-                                                    <select class="form-select form-control" name="select_bourse" id="select_bourse">
+                                                    <select class="form-select form-control" name="select_bourse"
+                                                        id="select_bourse">
                                                         <option value="bourse_oui">{{ __('messages.oui') }}</option>
                                                         <option value="bourse_non">{{ __('messages.non') }}</option>
                                                     </select>

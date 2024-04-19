@@ -87,15 +87,12 @@ class InscriptionController extends Controller
 
     public function bourseInscription(Request $request)
     {
-
-        $Check_Inscription_cne = bourses::where('cne', $request->cin)
-            ->first();
-        $Check_Inscription_massar = bourses::where('cin_massar', $request->cin_massar)
-            ->first();
+        $flag_inscription = false;
+        $Check_Inscription_cne = bourses::where('cne', $request->cin)->first();
+        $Check_Inscription_massar = bourses::where('cin_massar', $request->cin_massar)->first();
         $code_inscription = DB::table('inscrires')->pluck('code_inscription')->last();
 
         if (!$Check_Inscription_cne && !$Check_Inscription_massar) {
-
             $bourses = new bourses;
 
             $bourses->code_inscription = $code_inscription;
@@ -115,307 +112,309 @@ class InscriptionController extends Controller
 
             $bourses->save();
 
+            // Generate PDF
             $code_inscription_recu = DB::table('bourses')->pluck('code_inscription')->last();
             $pdf = PDF::loadView('recu_bourse', ['request' => $request, 'code_inscription_recu' => $code_inscription_recu]);
+            $flag_inscription = true;
 
-            // switch ($request->profession) {
-            //     case 'Parent commerçant':
+            switch (($request->profession) && ($request->profession_mer) && ($request->profession_tuteur)) {
+                case 'Parent commerçant':
 
-            //         if (session()->get('locale') == 'fr') {
-            //             return response()->json([
-            //                 'message' => "
-            //             • La Carte d’Identité Nationale (CIN) <br>
-            //             • Une attestation de revenu global délivrée par les services fiscaux compétents.<br>
-            //             • Les statuts de la société si celle-ci a été constituée.<br>
-            //             • Une inscription valide au registre du commerce en vigueur.<br>
-            //             • Une quittance de la patente pour l'année en cours.<br>
-            //             • Les six derniers relevés bancaires pour les comptes personnels et professionnels liés à
-            //             l'entreprise<br>
+                    if (session()->get('locale') == 'fr') {
+                        return response()->json([
+                            'message' => "
+                            • La Carte d’Identité Nationale (CIN) <br>
+                            • Une attestation de revenu global délivrée par les services fiscaux compétents.<br>
+                            • Les statuts de la société si celle-ci a été constituée.<br>
+                            • Une inscription valide au registre du commerce en vigueur.<br>
+                            • Une quittance de la patente pour l'année en cours.<br>
+                            • Les six derniers relevés bancaires pour les comptes personnels et professionnels liés à
+                            l'entreprise<br>
 
-            //            "
-            //                 , 'pdf' => base64_encode($pdf->output())
-            //                 , 'flag' => 'true',
-            //             ], 200);
-            //         } else if (session()->get('locale') == 'ar') {
-            //             return response()->json([
-            //                 'message' => "
-            //             <br> • (CIN) بطاقة التعريف الوطنية
-            //             <br> • شهادة الدخل الإجمالي المصدرة من الجهات الضريبية المختصة.
-            //             <br>• النظام الأساسي للشركة في حال تأسست الشركة.
-            //             <br>• تسجيل صالح في سجل التجارة النافذ.
-            //             <br>• إيصال البطاقة المهنية للعام الجاري.
-            //             <br>• آخر ستة كشوفات بنكية للحسابات الشخصية والمهنية المرتبطة بالشركة.ة",
-            //                 'pdf' => base64_encode($pdf->output())
-            //                 , 'flag' => 'true',
-            //             ], 200);
+                           "
+                            , 'pdf' => base64_encode($pdf->output())
+                            , 'flag' => 'true',
+                        ], 200);
+                    } else if (session()->get('locale') == 'ar') {
+                        return response()->json([
+                            'message' => "
+                            <br> • (CIN) بطاقة التعريف الوطنية
+                            <br> • شهادة الدخل الإجمالي المصدرة من الجهات الضريبية المختصة.
+                            <br>• النظام الأساسي للشركة في حال تأسست الشركة.
+                            <br>• تسجيل صالح في سجل التجارة النافذ.
+                            <br>• إيصال البطاقة المهنية للعام الجاري.
+                            <br>• آخر ستة كشوفات بنكية للحسابات الشخصية والمهنية المرتبطة بالشركة.ة",
+                            'pdf' => base64_encode($pdf->output())
+                            , 'flag' => 'true',
+                        ], 200);
 
-            //         } else {
-            //             return response()->json([
-            //                 'message' => "
-            //             • La Carte d’Identité Nationale (CIN) <br>
-            //             • Une attestation de revenu global délivrée par les services fiscaux compétents.<br>
-            //             • Les statuts de la société si celle-ci a été constituée.<br>
-            //             • Une inscription valide au registre du commerce en vigueur.<br>
-            //             • Une quittance de la patente pour l'année en cours.<br>
-            //             • Les six derniers relevés bancaires pour les comptes personnels et professionnels liés à
-            //             l'entreprise<br>",
-            //                 'pdf' => base64_encode($pdf->output())
-            //                 , 'flag' => 'true',
-            //             ], 200);
-            //         }
+                    } else {
+                        return response()->json([
+                            'message' => "
+                            • La Carte d’Identité Nationale (CIN) <br>
+                            • Une attestation de revenu global délivrée par les services fiscaux compétents.<br>
+                            • Les statuts de la société si celle-ci a été constituée.<br>
+                            • Une inscription valide au registre du commerce en vigueur.<br>
+                            • Une quittance de la patente pour l'année en cours.<br>
+                            • Les six derniers relevés bancaires pour les comptes personnels et professionnels liés à
+                            l'entreprise<br>",
+                            'pdf' => base64_encode($pdf->output())
+                            , 'flag' => 'true',
+                        ], 200);
+                    }
 
-            //         break;
-            //     case 'Parent salarié': //////////////////////////////////////////////////////////
+                    break;
+                case 'Parent salarié': //////////////////////////////////////////////////////////
 
-            //         if (session()->get('locale') == 'fr') {
-            //             return response()->json([
-            //                 'message' => "
-            //                 • La Carte d’Identité Nationale (CIN) <br>
-            //                 • Un document officiel de l'employeur attestant de votre emploi, incluant votre date
-            //                 d'embauche, votre poste et votre salaire mensuel net (Attestation de travail).<br>
-            //                 • Les trois derniers bulletins de salaire signés et tamponnés par l'employeur.<br>
-            //                 • Une attestation de déclaration des salaires (récapitulatif de carrière) émise par la Caisse
-            //                 Nationale de Sécurité Sociale (CNSS).<br>
-            //                 • Une attestation de revenus globaux délivrée par l'administration fiscale.<br>
-            //                 • Les six derniers relevés de compte bancaire cachetés par votre banque (incluant votre
-            //                 compte courant ainsi que votre compte épargne si vous en possédez un).<br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         } else if (session()->get('locale') == 'ar') {
-            //             return response()->json([
-            //                 'message' => "
-            //                 <br> • (CIN) بطاقة التعريف الوطنية
-            //                 <br> • شهادة بالدخل الإجمالي المصدرة من الجهات الضريبية المختصة.<br>
-            //                 <br>• نظام الشركة إذا تم تأسيسها.<br>
-            //                 <br>• تسجيل صالح في السجل التجاري الحالي.<br>
-            //                 <br> • وصل دفع ضريبة البطاقة المهنية للعام الحالي.<br>
-            //                 <br> • البيانات المصرفية لآخر 6 أشهر للحسابات الشخصية والمهنية المرتبطة بالشركة.<br>
-            //                 لتتبع طلبكم , المرجو زيارة :
-            //                 "
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         } else {
-            //             return response()->json([
-            //                 'message' => "
-            //                 <br>  • وثيقة رسمية من جهة العمل تثبت وظيفتك، بما في ذلك تاريخ التوظيف والمنصب والراتب الصافي الشهري (شهادة العمل).<br>
-            //                 <br> • آخر ثلاث كشوفات الرواتب الموقعة والمختومة من قبل جهة العمل.<br>
-            //                 <br>• شهادة بتقرير الرواتب (ملخص الحياة المهنية) الصادرة عن الصندوق الوطني للضمان الاجتماعي (الصندوق الوطني للضمان الاجتماعي).<br>
-            //                 <br> • شهادة بالدخل الإجمالي المصدرة من إدارة الضرائب.<br>
-            //                 <br> • آخر ست كشوفات حساب مصرفي مختومة من بنكك (بما في ذلك حساب الجاري وحساب التوفير إذا كان لديك).<br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         }
+                    if (session()->get('locale') == 'fr') {
+                        return response()->json([
+                            'message' => "
+                                • La Carte d’Identité Nationale (CIN) <br>
+                                • Un document officiel de l'employeur attestant de votre emploi, incluant votre date
+                                d'embauche, votre poste et votre salaire mensuel net (Attestation de travail).<br>
+                                • Les trois derniers bulletins de salaire signés et tamponnés par l'employeur.<br>
+                                • Une attestation de déclaration des salaires (récapitulatif de carrière) émise par la Caisse
+                                Nationale de Sécurité Sociale (CNSS).<br>
+                                • Une attestation de revenus globaux délivrée par l'administration fiscale.<br>
+                                • Les six derniers relevés de compte bancaire cachetés par votre banque (incluant votre
+                                compte courant ainsi que votre compte épargne si vous en possédez un).<br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    } else if (session()->get('locale') == 'ar') {
+                        return response()->json([
+                            'message' => "
+                                <br> • (CIN) بطاقة التعريف الوطنية
+                                <br> • شهادة بالدخل الإجمالي المصدرة من الجهات الضريبية المختصة.<br>
+                                <br>• نظام الشركة إذا تم تأسيسها.<br>
+                                <br>• تسجيل صالح في السجل التجاري الحالي.<br>
+                                <br> • وصل دفع ضريبة البطاقة المهنية للعام الحالي.<br>
+                                <br> • البيانات المصرفية لآخر 6 أشهر للحسابات الشخصية والمهنية المرتبطة بالشركة.<br>
+                                لتتبع طلبكم , المرجو زيارة :
+                                "
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    } else {
+                        return response()->json([
+                            'message' => "
+                                <br>  • وثيقة رسمية من جهة العمل تثبت وظيفتك، بما في ذلك تاريخ التوظيف والمنصب والراتب الصافي الشهري (شهادة العمل).<br>
+                                <br> • آخر ثلاث كشوفات الرواتب الموقعة والمختومة من قبل جهة العمل.<br>
+                                <br>• شهادة بتقرير الرواتب (ملخص الحياة المهنية) الصادرة عن الصندوق الوطني للضمان الاجتماعي (الصندوق الوطني للضمان الاجتماعي).<br>
+                                <br> • شهادة بالدخل الإجمالي المصدرة من إدارة الضرائب.<br>
+                                <br> • آخر ست كشوفات حساب مصرفي مختومة من بنكك (بما في ذلك حساب الجاري وحساب التوفير إذا كان لديك).<br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    }
 
-            //         break;
-            //     case 'Parent fonctionnaire': //////////////////////////////////////////////////////////
+                    break;
+                case 'Parent fonctionnaire': //////////////////////////////////////////////////////////
 
-            //         if (session()->get('locale') == 'fr') {
-            //             return response()->json([
-            //                 'message' => "
-            //                 • La Carte d’Identité Nationale (CIN) <br>
-            //                 • Une lettre officielle de votre employeur confirmant votre emploi actuel et la durée de votre
-            //                 contrat. (Attestation de travail).<br>
-            //                 • Une attestation de rémunération indiquant le montant de votre salaire mensuel brut et net
-            //                 ainsi que les avantages en nature éventuels (Attestation de salaire).<br>
-            //                 • Les relevés bancaires des 6 derniers mois pour vos comptes courants et épargne, certifiés et
-            //                 tamponnés par votre banque.<br>
-            //                 • Les 3 derniers relevés de paie, détaillant vos revenus bruts et nets, les cotisations sociales et
-            //                 fiscales, ainsi que les primes ou indemnités éventuelles.<br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         } else if (session()->get('locale') == 'ar') {
-            //             return response()->json([
-            //                 'message' => "
-            //                 <br> • (CIN) بطاقة التعريف الوطنية
-            //                 <br> • رسالة رسمية من جهة العمل تؤكد على وظيفتك الحالية ومدة عقدك (شهادة العمل).<br>
-            //                 <br> • شهادة الأجر توضح مبلغ أجرك الإجمالي والصافي الشهري والإضافات العينية إن وجدت (شهادة الأجر).<br>
-            //                 <br> • البيانات المصرفية لآخر 6 أشهر لحساباتك الجارية وحسابات التوفير، مصدقة ومختومة من قبل بنكك.<br>
-            //                 <br> • آخر 3 كشوفات الرواتب، توضح إجمالي الدخل والصافي والمساهمات الاجتماعية والضريبية، وأي مكافآت أو بدلات إضافية إن وجدت.<br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         } else {
-            //             return response()->json([
-            //                 'message' => "
-            //                 • La Carte d’Identité Nationale (CIN) <br>
-            //                 • Une lettre officielle de votre employeur confirmant votre emploi actuel et la durée de votre
-            //                 contrat. (Attestation de travail).<br>
-            //                 • Une attestation de rémunération indiquant le montant de votre salaire mensuel brut et net
-            //                 ainsi que les avantages en nature éventuels (Attestation de salaire).<br>
-            //                 • Les relevés bancaires des 6 derniers mois pour vos comptes courants et épargne, certifiés et
-            //                 tamponnés par votre banque.<br>
-            //                 • Les 3 derniers relevés de paie, détaillant vos revenus bruts et nets, les cotisations sociales et
-            //                 fiscales, ainsi que les primes ou indemnités éventuelles.<br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         }
+                    if (session()->get('locale') == 'fr') {
+                        return response()->json([
+                            'message' => "
+                                • La Carte d’Identité Nationale (CIN) <br>
+                                • Une lettre officielle de votre employeur confirmant votre emploi actuel et la durée de votre
+                                contrat. (Attestation de travail).<br>
+                                • Une attestation de rémunération indiquant le montant de votre salaire mensuel brut et net
+                                ainsi que les avantages en nature éventuels (Attestation de salaire).<br>
+                                • Les relevés bancaires des 6 derniers mois pour vos comptes courants et épargne, certifiés et
+                                tamponnés par votre banque.<br>
+                                • Les 3 derniers relevés de paie, détaillant vos revenus bruts et nets, les cotisations sociales et
+                                fiscales, ainsi que les primes ou indemnités éventuelles.<br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    } else if (session()->get('locale') == 'ar') {
+                        return response()->json([
+                            'message' => "
+                                <br> • (CIN) بطاقة التعريف الوطنية
+                                <br> • رسالة رسمية من جهة العمل تؤكد على وظيفتك الحالية ومدة عقدك (شهادة العمل).<br>
+                                <br> • شهادة الأجر توضح مبلغ أجرك الإجمالي والصافي الشهري والإضافات العينية إن وجدت (شهادة الأجر).<br>
+                                <br> • البيانات المصرفية لآخر 6 أشهر لحساباتك الجارية وحسابات التوفير، مصدقة ومختومة من قبل بنكك.<br>
+                                <br> • آخر 3 كشوفات الرواتب، توضح إجمالي الدخل والصافي والمساهمات الاجتماعية والضريبية، وأي مكافآت أو بدلات إضافية إن وجدت.<br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    } else {
+                        return response()->json([
+                            'message' => "
+                                • La Carte d’Identité Nationale (CIN) <br>
+                                • Une lettre officielle de votre employeur confirmant votre emploi actuel et la durée de votre
+                                contrat. (Attestation de travail).<br>
+                                • Une attestation de rémunération indiquant le montant de votre salaire mensuel brut et net
+                                ainsi que les avantages en nature éventuels (Attestation de salaire).<br>
+                                • Les relevés bancaires des 6 derniers mois pour vos comptes courants et épargne, certifiés et
+                                tamponnés par votre banque.<br>
+                                • Les 3 derniers relevés de paie, détaillant vos revenus bruts et nets, les cotisations sociales et
+                                fiscales, ainsi que les primes ou indemnités éventuelles.<br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    }
 
-            //         break;
-            //     case 'Parent retraité': //////////////////////////////////////////////////////////
+                    break;
+                case 'Parent retraité': //////////////////////////////////////////////////////////
 
-            //         if (session()->get('locale') == 'fr') {
-            //             return response()->json([
-            //                 'message' => "
-            //                 • La Carte d’Identité Nationale (CIN) <br>
-            //                 • Une attestation de revenu global émise par les services fiscaux pour l'année fiscale en cours.<br>
-            //                 • Des justificatifs récents de pension ou de rente émis par des organismes de sécurité sociale
-            //                 tels que la CNSS, la CIMR ou la RCAR.<br>
-            //                 • Les six derniers relevés de compte bancaire officiels et validés par votre banque.<br>
-            //                 • Une attestation de non-activité délivrée par les autorités locales pour prouver que vous
-            //                 n'exercez pas d'activité professionnelle en tant que retraité.<br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         } else if (session()->get('locale') == 'ar') {
-            //             return response()->json([
-            //                 'message' => "
-            //                 <br> • (CIN) بطاقة التعريف الوطنية
-            //                 • شهادة بالدخل الإجمالي المصدرة من خدمات الضرائب للسنة المالية الحالية.<br>
-            //                 • الوثائق الأخيرة التي تثبت حصولك على معاش أو مستحقات تقاعدية صادرة عن الجهات الضامنة الاجتماعية مثل الصندوق الوطني للضمان الاجتماعي (CNSS)، CIMR، أو RCAR.<br>
-            //                 • البيانات المصرفية لآخر 6 أشهر المصدقة والمعتمدة من بنكك.<br>
-            //                 • شهادة بعدم النشاط المهني صادرة عن السلطات المحلية لإثبات عدم ممارستك لنشاط مهني كمتقاعد.<br>"
-            //                 , 'flag' => 'true',
-            //             ], 200);
-            //         } else {
-            //             return response()->json([
-            //                 'message' => "
-            //                 • La Carte d’Identité Nationale (CIN) <br>
-            //                 • Une attestation de revenu global émise par les services fiscaux pour l'année fiscale en cours.<br>
-            //                 • Des justificatifs récents de pension ou de rente émis par des organismes de sécurité sociale
-            //                 tels que la CNSS, la CIMR ou la RCAR.<br>
-            //                 • Les six derniers relevés de compte bancaire officiels et validés par votre banque.<br>
-            //                 • Une attestation de non-activité délivrée par les autorités locales pour prouver que vous
-            //                 n'exercez pas d'activité professionnelle en tant que retraité.<br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         }
+                    if (session()->get('locale') == 'fr') {
+                        return response()->json([
+                            'message' => "
+                                • La Carte d’Identité Nationale (CIN) <br>
+                                • Une attestation de revenu global émise par les services fiscaux pour l'année fiscale en cours.<br>
+                                • Des justificatifs récents de pension ou de rente émis par des organismes de sécurité sociale
+                                tels que la CNSS, la CIMR ou la RCAR.<br>
+                                • Les six derniers relevés de compte bancaire officiels et validés par votre banque.<br>
+                                • Une attestation de non-activité délivrée par les autorités locales pour prouver que vous
+                                n'exercez pas d'activité professionnelle en tant que retraité.<br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    } else if (session()->get('locale') == 'ar') {
+                        return response()->json([
+                            'message' => "
+                                <br> • (CIN) بطاقة التعريف الوطنية
+                                • شهادة بالدخل الإجمالي المصدرة من خدمات الضرائب للسنة المالية الحالية.<br>
+                                • الوثائق الأخيرة التي تثبت حصولك على معاش أو مستحقات تقاعدية صادرة عن الجهات الضامنة الاجتماعية مثل الصندوق الوطني للضمان الاجتماعي (CNSS)، CIMR، أو RCAR.<br>
+                                • البيانات المصرفية لآخر 6 أشهر المصدقة والمعتمدة من بنكك.<br>
+                                • شهادة بعدم النشاط المهني صادرة عن السلطات المحلية لإثبات عدم ممارستك لنشاط مهني كمتقاعد.<br>"
+                            , 'flag' => 'true',
+                        ], 200);
+                    } else {
+                        return response()->json([
+                            'message' => "
+                                • La Carte d’Identité Nationale (CIN) <br>
+                                • Une attestation de revenu global émise par les services fiscaux pour l'année fiscale en cours.<br>
+                                • Des justificatifs récents de pension ou de rente émis par des organismes de sécurité sociale
+                                tels que la CNSS, la CIMR ou la RCAR.<br>
+                                • Les six derniers relevés de compte bancaire officiels et validés par votre banque.<br>
+                                • Une attestation de non-activité délivrée par les autorités locales pour prouver que vous
+                                n'exercez pas d'activité professionnelle en tant que retraité.<br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    }
 
-            //         break;
-            //     case 'Parent sans activité professionnelle': //////////////////////////////////////////////////////////
-            //         error_log("Parent sans activité professionnelle");
-            //         if (session()->get('locale') == 'fr') {
-            //             return response()->json([
-            //                 'message' => "
-            //                 • La Carte d’Identité Nationale (CIN) <br>
-            //                 • Attestation de revenu global délivrée par l'administration fiscale.<br>
-            //                 • Certificat de non-activité délivré par les autorités locales.
-            //                 <br>"
-            //                 , 'flag' => 'true',
-            //             ], 200);
-            //         } else if (session()->get('locale') == 'ar') {
-            //             return response()->json([
-            //                 'message' => "
-            //                 <br> • (CIN) بطاقة التعريف الوطنية
-            //                 • شهادة بالدخل الإجمالي المصدرة من إدارة الضرائب.<br>
-            //                 • شهادة بعدم النشاط المهني صادرة عن السلطات المحلية.<br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         } else {
-            //             return response()->json([
-            //                 'message' => "
-            //                 • La Carte d’Identité Nationale (CIN) <br>
-            //                 • Attestation de revenu global délivrée par l'administration fiscale.<br>
-            //                 • Certificat de non-activité délivré par les autorités locales.
-            //                 <br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         }
+                    break;
+                case 'Parent sans activité professionnelle': //////////////////////////////////////////////////////////
+                    error_log("Parent sans activité professionnelle");
+                    if (session()->get('locale') == 'fr') {
+                        return response()->json([
+                            'message' => "
+                                • La Carte d’Identité Nationale (CIN) <br>
+                                • Attestation de revenu global délivrée par l'administration fiscale.<br>
+                                • Certificat de non-activité délivré par les autorités locales.
+                                <br>"
+                            , 'flag' => 'true',
+                        ], 200);
+                    } else if (session()->get('locale') == 'ar') {
+                        return response()->json([
+                            'message' => "
+                                <br> • (CIN) بطاقة التعريف الوطنية
+                                • شهادة بالدخل الإجمالي المصدرة من إدارة الضرائب.<br>
+                                • شهادة بعدم النشاط المهني صادرة عن السلطات المحلية.<br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    } else {
+                        return response()->json([
+                            'message' => "
+                                • La Carte d’Identité Nationale (CIN) <br>
+                                • Attestation de revenu global délivrée par l'administration fiscale.<br>
+                                • Certificat de non-activité délivré par les autorités locales.
+                                <br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    }
 
-            //         break;
+                    break;
 
-            //     case 'Parent dans la profession libérale': //////////////////////////////////////////////////////////
+                case 'Parent dans la profession libérale': //////////////////////////////////////////////////////////
 
-            //         if (session()->get('locale') == 'fr') {
-            //             return response()->json([
-            //                 'message' => "
-            //                 • La Carte d’Identité Nationale (CIN) <br>
-            //                 • Une attestation de revenu global délivrée par l'administration fiscale.<br>
-            //                 • Une quittance de patente en cours de validité.<br>
-            //                 • Une preuve d'inscription au registre du commerce.<br>
-            //                 • Une carte de membre de l'ordre ou une carte professionnelle valide.<br>
-            //                 • Votre identifiant fiscal.<br>
-            //                 • Votre identifiant commun des entreprises (SIRET).<br>
-            //                 • Les six derniers relevés bancaires pour vos comptes personnel et professionnel, tamponnés
-            //                 et signés par votre banque
-            //                 <br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         } else if (session()->get('locale') == 'ar') {
-            //             return response()->json([
-            //                 'message' => "
-            //                 <br> • (CIN) بطاقة التعريف الوطنية
-            //                 <br>   • شهادة بالدخل الإجمالي المصدرة من إدارة الضرائب.
-            //                 <br> • وصل دفع ضريبة البطاقة المهنية صالحة.
-            //                 <br> • دليل تسجيلك في السجل التجاري.
-            //                 <br> • بطاقة عضو في النقابة أو بطاقة مهنية صالحة.
-            //                 <br> • هويتك الضريبية.
-            //                 <br>  • هويتك المشتركة للشركات (SIRET).
-            //                 <br> • البيانات المصرفية لآخر 6 أشهر لحساباتك الشخصية والمهنية، مختومة وموقعة من بنكك."
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         } else {
-            //             return response()->json([
-            //                 'message' => "
-            //                 • La Carte d’Identité Nationale (CIN) <br>
-            //                 • Une attestation de revenu global délivrée par l'administration fiscale.<br>
-            //                 • Une quittance de patente en cours de validité.<br>
-            //                 • Une preuve d'inscription au registre du commerce.<br>
-            //                 • Une carte de membre de l'ordre ou une carte professionnelle valide.<br>
-            //                 • Votre identifiant fiscal.<br>
-            //                 • Votre identifiant commun des entreprises (SIRET).<br>
-            //                 • Les six derniers relevés bancaires pour vos comptes personnel et professionnel, tamponnés
-            //                 et signés par votre banque
-            //                 <br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         }
+                    if (session()->get('locale') == 'fr') {
+                        return response()->json([
+                            'message' => "
+                                • La Carte d’Identité Nationale (CIN) <br>
+                                • Une attestation de revenu global délivrée par l'administration fiscale.<br>
+                                • Une quittance de patente en cours de validité.<br>
+                                • Une preuve d'inscription au registre du commerce.<br>
+                                • Une carte de membre de l'ordre ou une carte professionnelle valide.<br>
+                                • Votre identifiant fiscal.<br>
+                                • Votre identifiant commun des entreprises (SIRET).<br>
+                                • Les six derniers relevés bancaires pour vos comptes personnel et professionnel, tamponnés
+                                et signés par votre banque
+                                <br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    } else if (session()->get('locale') == 'ar') {
+                        return response()->json([
+                            'message' => "
+                                <br> • (CIN) بطاقة التعريف الوطنية
+                                <br>   • شهادة بالدخل الإجمالي المصدرة من إدارة الضرائب.
+                                <br> • وصل دفع ضريبة البطاقة المهنية صالحة.
+                                <br> • دليل تسجيلك في السجل التجاري.
+                                <br> • بطاقة عضو في النقابة أو بطاقة مهنية صالحة.
+                                <br> • هويتك الضريبية.
+                                <br>  • هويتك المشتركة للشركات (SIRET).
+                                <br> • البيانات المصرفية لآخر 6 أشهر لحساباتك الشخصية والمهنية، مختومة وموقعة من بنكك."
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    } else {
+                        return response()->json([
+                            'message' => "
+                                • La Carte d’Identité Nationale (CIN) <br>
+                                • Une attestation de revenu global délivrée par l'administration fiscale.<br>
+                                • Une quittance de patente en cours de validité.<br>
+                                • Une preuve d'inscription au registre du commerce.<br>
+                                • Une carte de membre de l'ordre ou une carte professionnelle valide.<br>
+                                • Votre identifiant fiscal.<br>
+                                • Votre identifiant commun des entreprises (SIRET).<br>
+                                • Les six derniers relevés bancaires pour vos comptes personnel et professionnel, tamponnés
+                                et signés par votre banque
+                                <br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    }
 
-            //     case 'Parent décédé':
+                case 'Parent décédé':
 
-            //         if (session()->get('locale') == 'fr') {
-            //             return response()->json([
-            //                 'message' => "
-            //                 • Certificat de décès<br>
-            //                 • Les relevés bancaires des 6 derniers mois pour vos comptes courants et épargne ou ceux de votre mère ou tout soutien de famille en cas de décès de votre père, certifiés et tamponnés par votre banque<br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         } else if (session()->get('locale') == 'ar') {
-            //             return response()->json([
-            //                 'message' => "
-            //                 <br> • (CIN) بطاقة الهوية الوطنية للطالب
-            //                 <br>   • شهادة الوفاة
-            //                 <br> • كشف حساب بنكي لآخر 6 أشهر للحسابات الجارية وحسابات التوفير الخاصة بك ، وكذلك حسابات والدتك أو أي معيل في حالة وفاة والدك ، مصدقة ومختومة من البنك الذي تتعامل معه"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         } else {
-            //             return response()->json([
-            //                 'message' => "
-            //                 • Certificat de décès<br>
-            //                 • Les relevés bancaires des 6 derniers mois pour vos comptes courants et épargne ou ceux de votre mère ou tout soutien de famille en cas de décès de votre père, certifiés et tamponnés par votre banque<br>"
-            //                 , 'flag' => 'true'
-            //                 , 'pdf' => base64_encode($pdf->output()),
-            //             ], 200);
-            //         }
+                    if (session()->get('locale') == 'fr') {
+                        return response()->json([
+                            'message' => "
+                                • Certificat de décès<br>
+                                • Les relevés bancaires des 6 derniers mois pour vos comptes courants et épargne ou ceux de votre mère ou tout soutien de famille en cas de décès de votre père, certifiés et tamponnés par votre banque<br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    } else if (session()->get('locale') == 'ar') {
+                        return response()->json([
+                            'message' => "
+                                <br> • (CIN) بطاقة الهوية الوطنية للطالب
+                                <br>   • شهادة الوفاة
+                                <br> • كشف حساب بنكي لآخر 6 أشهر للحسابات الجارية وحسابات التوفير الخاصة بك ، وكذلك حسابات والدتك أو أي معيل في حالة وفاة والدك ، مصدقة ومختومة من البنك الذي تتعامل معه"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    } else {
+                        return response()->json([
+                            'message' => "
+                                • Certificat de décès<br>
+                                • Les relevés bancaires des 6 derniers mois pour vos comptes courants et épargne ou ceux de votre mère ou tout soutien de famille en cas de décès de votre père, certifiés et tamponnés par votre banque<br>"
+                            , 'flag' => 'true'
+                            , 'pdf' => base64_encode($pdf->output()),
+                        ], 200);
+                    }
 
-            //         break;
+                    break;
 
-            //         break;
-            //     default:
-            //         break;
-            // }
+                    break;
+                default:
+                    break;
+            }
 
         } else {
             if (session()->get('locale') == 'fr') {
@@ -423,7 +422,7 @@ class InscriptionController extends Controller
                     'message' => 'Vous êtes déjà inscrit à La bourse',
                     'flag' => 'already',
                 ], 200);
-            } else if (session()->get('locale') == 'ar') {
+            } elseif (session()->get('locale') == 'ar') {
                 return response()->json([
                     'message' => 'أنت مسجل بالفعل في المنحة',
                     'flag' => 'already',
@@ -435,7 +434,6 @@ class InscriptionController extends Controller
                 ], 200);
             }
         }
-
     }
 
     public function CheckUserLoginBourse()
