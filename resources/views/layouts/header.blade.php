@@ -320,7 +320,7 @@
                 </li>
 
 
-                <li class="dropdown"><a href="#"><span>{{ __('messages.concoursMsg') }}</span> <i
+                {{-- <li class="dropdown"><a href="#"><span>{{ __('messages.concoursMsg') }}</span> <i
                             class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li class="dropdown"><a
@@ -330,7 +330,7 @@
                                 href="{{ route('results', ['slug' => App::getLocale()]) }}"><span>{{ __('messages.res_cnc') }}</span></a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li><a class="nav-link scrollto" href="{{ route('galerie', ['slug' => App::getLocale()]) }}">
                         {{ __('messages.Galerie') }}</a></li>

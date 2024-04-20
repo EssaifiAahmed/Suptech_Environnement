@@ -119,6 +119,7 @@
                                             <thead class="text-capitalize">
                                                 <tr>
                                                     <th>Numero</th>
+                                                    <th>Code d'inscription</th>
                                                     <th>Nom | Prénom</th>
                                                     <th>Email</th>
                                                     <th>CNE</th>
@@ -143,6 +144,7 @@
                                                 @foreach ($data as $data)
                                                     <tr>
                                                         <td>{{ $val++ }} </td>
+                                                        <td>{{ $data->code_inscription }} </td>
                                                         <td>{{ $data->Nom }} </td>
                                                         <td>{{ $data->email }}</td>
                                                         <td>{{ $data->cne }}</td>
@@ -300,10 +302,6 @@
                                         column
                                             .search(val ? '^' + val + '$' : '', true, false)
                                             .draw();
-
-
-
-
 
                                         if ($(this).find('option:selected').text()) {
                                             var test = $(this).find('option:selected').text();

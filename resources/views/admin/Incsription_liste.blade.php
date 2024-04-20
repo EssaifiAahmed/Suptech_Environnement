@@ -109,7 +109,6 @@
                             </a>
                         </div>
 
-
                         <!-- Primary table start -->
                         <div class="col-12 mt-5">
                             <div class="card">
@@ -120,6 +119,7 @@
                                             <thead class="text-capitalize">
                                                 <tr>
                                                     <th>Numero</th>
+                                                    <th>Numero d'inscription</th>
                                                     <th>Nom | prénom</th>
                                                     <th>CNI</th>
                                                     <th>Code Massar</th>
@@ -144,6 +144,7 @@
                                                 @foreach ($data as $data)
                                                     <tr>
                                                         <td>{{ $val++ }} </td>
+                                                        <td>{{ $data->code_inscription}} </td>
                                                         <td>{{ $data->Nom }} {{ $data->Prenom }} </td>
                                                         <td>{{ $data->cni }}</td>
                                                         <td>{{ $data->CIN_MASSAR }}</td>

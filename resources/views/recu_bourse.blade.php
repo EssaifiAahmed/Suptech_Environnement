@@ -7,7 +7,7 @@
 		body {
 	
 		
-									  font-size: 14px;
+		font-size: 14px;
 
 		}
 		h2 {
@@ -138,11 +138,11 @@
 
 		<tr>
 		    <td id="header" >Nom du tuteur:</td>
-			<td>{{ $request->input('nct') }}</td>
+			<td>{{ $request->input('nom_tuteur_complet') }}</td>
 		</tr>
 		
 		<tr>
-		    <td id="header" >Situation du tuteur :</td>
+		    <td id="header" >TuteurS :</td>
 			<td>{{ $request->input('profession_tuteur') }}</td>
 		</tr>
 	</table>

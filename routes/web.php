@@ -845,7 +845,7 @@ Route::post('{slug}/login', [UserController::class, 'login_action'])->name('logi
 
 Route::post('{slug}/check', [UserController::class, 'check']);
 
-Route::get('{slug}/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('{slug}/home', [@App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route::get('{slug}/contacta', [ContactController::class, 'show']);
 

@@ -89,11 +89,11 @@
                 <h2>{{ __('messages.RequestBourse') }}</h2>
             </div>
 
-            @if (session('success'))
+            {{-- @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
-            @endif
+            @endif --}}
 
 
             <div class="row" id="response">
@@ -216,7 +216,7 @@
                                 <div class="msg"> {{ __('messages.inscrire') }} </div>
                             </button>
                         </div>
-                        <div class="alert alert-success alert-dismissible fade show  m-auto mt-5"
+                        {{-- <div class="alert alert-success alert-dismissible fade show  m-auto mt-5"
                             style="width:50%; display:none;" id="succes1" role="alert">
                             <strong>
                                 {{ __('messages.success') }}</strong>{{ __('messages.successMsg') }}
@@ -225,7 +225,7 @@
                             style="width:50% ; display:none;" id="danger" role="alert">
                             <strong>{{ __('messages.echec') }}</strong>
                             {{ __('messages.erreurMsg') }}
-                        </div>
+                        </div> --}}
                     </form>
                 </div>
             </div>
@@ -269,100 +269,20 @@
         // Hide the <div> element by setting its "display" CSS property to "none"
         loader.style.display = 'none';
         msg.style.display = 'block';
-
-
-        $("#succes1").hide();
-
-        $("#danger").hide();
-
-        $("#OrderInfo").on("submit", function(e) {
-            loader.style.display = 'block';
-            msg.style.display = 'none';
-            $("#succes1").hide();
-            $("#danger").hide();
-            $.ajax({
-                type: "POST",
-
-                url: "{{ route('InsertBourse', ['slug' => App::getLocale()]) }}",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                dataType: 'json',
-                success: function(response) {
-                    $("#succes1").hide();
-                    $("#danger").hide();
-                    if (response.flag == 'true') {
-                        // window.open(response);
-
-
-                        // Create a blob from the decoded PDF data
-
-                        $("#succes1").show();
-                        document.getElementById('response').innerHTML =
-                            "<h5 style='color: green; text-align: center;'>{{ __('messages.vdebe') }}</h5> <br> <p> {{ __('messages.RecuDetailsText') }} </p>";
-                        document.getElementById('response').innerHTML +=
-                            "<h5 style='color: black; text-align: session()->get('locale') == 'ar' ? right : left;'>{{ __('messages.DocumentsEtudiant') }} : </h5> <br> <p>    {{ __('messages.CNI') }} .<br> {{ __('messages.FDB') }} .<br> </p>";
-                        document.getElementById('response').innerHTML +=
-                            "<h5 style='color: black; text-align: session()->get('locale') == 'ar' ? right : left;'>{{ __('messages.ppd') }} : </h5> ";
-                        document.getElementById('response').innerHTML += response.message;
-                        document.getElementById('response').innerHTML +=
-                            "<br><br> <p> {{ __('messages.RecuDetailsFooterText1') }} <a href='https://suptech-environnement.ma/fr/Suivi' target='_blank'>{{ __('messages.Click') }}</a> {{ __('messages.RecuDetailsFooterTextContinue') }} <br> {{ __('messages.RecuDetailsFooterText2') }} <br> {{ __('messages.RecuDetailsFooterText3') }} </p><br> ";
-
-
-                        var pdfData = atob(response.pdf);
-                        var pdfArray = new Uint8Array(pdfData.length);
-                        for (var i = 0; i < pdfData.length; i++) {
-                            pdfArray[i] = pdfData.charCodeAt(i);
-                        }
-
-                        var blob = new Blob([pdfArray], {
-                            type: 'application/pdf'
-                        });
-
-                        var url = URL.createObjectURL(blob);
-                        var link = document.createElement('a');
-                        link.href = url;
-                        link.download = 'reçu_bourse.pdf';
-                        link.click();
-
-                        loader.style.display = 'none';
-                        msg.style.display = 'block';
-                        /*
-                        loader.style.display = 'none';
-                        msg.style.display = 'block';
-                        $("#danger").show();
-                        //alert(response.message);
-                        document.getElementById('danger').innerText = response.message;
-                        */
-                    } else if (response.flag == 'already') {
-                        document.getElementById('response').innerHTML =
-                            "<h5 style='color: red; text-align: center;'>Vous êtes déja inscrit à cette bourse</h5> ";
-                    }
-                },
-                error: function(xhr, status, error) {
-                    loader.style.display = 'none';
-                    msg.style.display = 'block';
-                    $("#danger").show();
-
-                }
-            });
-            e.preventDefault();
-        });
     </script>
     <!--  Script  change the language -->
 
     <script>
         /* Show/hide the "other" input based on the selected option
-                      const select = document.getElementById("mySelect");
-                      const otherOption = document.getElementById("otherOption");
-                      select.addEventListener("change", function() {
-                        if (select.value === "other") {
-                          otherOption.style.display = "block";
-                        } else {
-                          otherOption.style.display = "none";
-                        }
-                      });*/
+                          const select = document.getElementById("mySelect");
+                          const otherOption = document.getElementById("otherOption");
+                          select.addEventListener("change", function() {
+                            if (select.value === "other") {
+                              otherOption.style.display = "block";
+                            } else {
+                              otherOption.style.display = "none";
+                            }
+                          });*/
     </script>
     <script>
         $(".changeLang").change(function() {
