@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Admin Login </title>
+    <title>Abujad Login </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,11 +31,11 @@
                         <p class="alert alert-danger">{{ $err }}</p>
                     @endforeach
                 @endif
-                <form action="{{ route('login.action', ['slug' => App::getLocale()]) }} " method="POST"
+                <form action="{{ route('login.action.abujad', ['slug' => App::getLocale()]) }} " method="POST"
                     class="login100-form validate-form">
                     @csrf
                     <span class="login100-form-title p-b-33">
-                        SUPTECH ADMIN
+                        ABUJAD PANEL
                     </span>
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         <input class="input100" type="username" name="username" value="{{ old('username') }}"

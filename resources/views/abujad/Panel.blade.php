@@ -49,7 +49,7 @@
     <!-- page container area start -->
     <div class="page-container">
         <!-- sidebar menu area start -->
-        @include('layouts.sidebar')
+        @include('abujad.layouts.sidebar')
         <!-- sidebar menu area end -->
         <!-- main content area start -->
         <div class="main-content">
@@ -70,7 +70,7 @@
                         <ul class="notification-area pull-right">
 
                             <li>
-                                <a href="{{ route('logout', ['slug' => App::getLocale()]) }}"><i
+                                <a href="{{ route('logout_abujad', ['slug' => App::getLocale()]) }}"><i
                                         class="ti-power-off"></i></a>
                             </li>
                             <li class="settings-btn">
@@ -82,7 +82,7 @@
             </div>
             <!-- header area end -->
             <!-- page title area start -->
-            <div class="page-title-area">
+            {{-- <div class="page-title-area">
                 <div class="row align-items-center">
                     <div class="col-sm-6">
                         <div class="breadcrumbs-area clearfix">
@@ -100,119 +100,30 @@
 
                         </div>
                     </div>
-                </div>
-                <!-- page title area end -->
-                <div class="main-content-inner">
-                    <div class="row">
-                        <h3>Bonjour Administrateur</h3>
-                        <div class="col-lg-12">
+                </div> --}}
+            <!-- page title area end -->
+            <div class="main-content-inner">
+                <div class="row">
+                    <h4 style="margin-top: 2%;">les Inscrits de la part Abujad:</h4>
 
-                            <div class="row">
-
-                                <div class="col-md-4 mt-md-5 mb-5">
-                                    <div class="card">
-                                        <div class="seo-fact sbg2">
-                                            <div class="p-4 d-flex justify-content-between align-items-center">
-                                                <div class="seofct-icon"><i class="ti-user"></i>Nombre de
-                                                    Pré-inscriptions :</div>
-                                                <h2>{{ $usersCount }} </h2>
-                                            </div>
-                                            <canvas id="seolinechart2" height="50"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 mt-md-5 mb-5">
-                                    <div class="card">
-                                        <div class="seo-fact sbg2">
-                                            <div class="p-4 d-flex justify-content-between align-items-center">
-                                                <div class="seofct-icon"><i class="ti-user"></i>Nombre de bourses
-                                                    demandées :</div>
-                                                <h2>{{ $BourseCount }} </h2>
-                                            </div>
-                                            <canvas id="seolinechart2" height="50"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 mt-5 mb-5">
-                                    <div class="card">
-                                        <div class="seo-fact sbg1">
-                                            <div class="p-4 d-flex justify-content-between align-items-center">
-                                                <div class="seofct-icon"><i class="ti-email"></i>Nombre de Messages :
-                                                </div>
-                                                <h2>{{ $mssgCount }}</h2>
-                                            </div>
-                                            <canvas id="seolinechart1" height="50"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
+                    <div class="col-lg-12">
 
                         <div class="row">
-                            <h4>Réseaux sociaux:</h4>
-
-                            <div class="col-lg-12">
-
-                                <div class="row">
-                                    <div class="col-md-3 mt-md-5 mb-3">
-                                        <div class="card">
-                                            <div class="seo-fact sbg2">
-                                                <div class="p-4 d-flex justify-content-between align-items-center">
-                                                    <div class="seofct-icon"><i class="ti-user"></i>Abdellah Abujad :
-                                                    </div>
-                                                    <h2>{{ $AbjudaResultat->count() }} </h2>
-                                                </div>
-                                                <canvas id="seolinechart2" height="50"></canvas>
+                            <div class="col-md-3 mt-md-5 mb-3">
+                                <div class="card">
+                                    <div class="seo-fact sbg2">
+                                        <div class="p-4 d-flex justify-content-between align-items-center">
+                                            <div class="seofct-icon"><i class="ti-user"></i>Abdellah Abujad :
                                             </div>
+                                            <h2>{{ $AbjudaResultat->count() }} </h2>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-3 mt-5 mb-3">
-                                        <div class="card">
-                                            <div class="seo-fact sbg2">
-                                                <div class="p-4 d-flex justify-content-between align-items-center">
-                                                    <div class="seofct-icon"><i class="ti-user"></i>Instagram :</div>
-                                                    <h2>{{ $instaResultat->count() }}</h2>
-                                                </div>
-                                                <canvas id="seolinechart1" height="50"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3 mt-5 mb-3">
-                                        <div class="card">
-                                            <div class="seo-fact sbg2">
-                                                <div class="p-4 d-flex justify-content-between align-items-center">
-                                                    <div class="seofct-icon"><i class="ti-user"></i>Facebook :</div>
-                                                    <h2>{{ $FaceResultat->count() }}</h2>
-                                                </div>
-                                                <canvas id="seolinechart1" height="50"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3 mt-5 mb-3">
-                                        <div class="card">
-                                            <div class="seo-fact sbg2">
-                                                <div class="p-4 d-flex justify-content-between align-items-center">
-                                                    <div class="seofct-icon"><i class="ti-user"></i>Linkedin :</div>
-                                                    <h2>{{ $LinkdinResultat->count() }}</h2>
-                                                </div>
-                                                <canvas id="seolinechart1" height="50"></canvas>
-                                            </div>
-                                        </div>
+                                        <canvas id="seolinechart2" height="50"></canvas>
                                     </div>
                                 </div>
                             </div>
 
-                            <h3 style="margin-bottom:50px;">Inscriptions par Filières</h3>
-
                             <div class="row">
-                                <h4>Classes préparatoires intégrées:</h4>
+                                <h4>Classes préparatoires intégrées total (facebook + instagram + Linkedin):</h4>
 
                                 <div class="col-lg-12">
 
@@ -246,7 +157,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <h4>Cycle ingénieur:</h4>
+                                <h4>Cycle ingénieur (facebook + instagram + Linkedin):</h4>
 
                                 <div class="col-lg-12">
                                     <div class="row">
@@ -291,7 +202,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <h4>Master:</h4>
+                                <h4>Master (facebook + instagram + Linkedin):</h4>
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-md-10 mt-md-5 mb-3">
@@ -340,9 +251,7 @@
                             </div>
 
                             <div class="row">
-                                <h4>Licence:</h4>
-
-
+                                <h4>Licence (facebook + instagram + Linkedin):</h4>
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-md-6 mt-md-5 mb-3">
@@ -430,7 +339,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- main content area end -->
                             <!-- footer area start-->
                             <footer>
                                 <div class="footer-area">
@@ -438,56 +346,53 @@
                                 </div>
                             </footer>
                             <!-- footer area end-->
-                        </div>
-                        <!-- page container area end -->
-                        <!-- offset area start -->
-                        <div class="offset-area">
-                            <div class="offset-close"><i class="ti-close"></i></div>
-                            <ul class="nav offset-menu-tab">
-                                <li><a data-toggle="tab" href="#settings">Settings</a></li>
-                            </ul>
-                            <div class="offset-content tab-content">
+                            <div class="offset-area">
+                                <div class="offset-close"><i class="ti-close"></i></div>
+                                <ul class="nav offset-menu-tab">
+                                    <li><a data-toggle="tab" href="#settings">Settings</a></li>
+                                </ul>
+                                <div class="offset-content tab-content">
 
-                                <div id="settings" class="tab-pane fade">
-                                    <div class="offset-settings">
-                                        <h4>General Settings</h4>
-                                        <div class="settings-list">
-                                            <div class="s-settings">
-                                                <div class="s-sw-title">
-                                                    <h5>Test</h5>
-                                                    <div class="s-swtich">
-                                                        <input type="checkbox" id="switch1" />
-                                                        <label for="switch1">Toggle</label>
+                                    <div id="settings" class="tab-pane fade">
+                                        <div class="offset-settings">
+                                            <h4>General Settings</h4>
+                                            <div class="settings-list">
+                                                <div class="s-settings">
+                                                    <div class="s-sw-title">
+                                                        <h5>Test</h5>
+                                                        <div class="s-swtich">
+                                                            <input type="checkbox" id="switch1" />
+                                                            <label for="switch1">Toggle</label>
+                                                        </div>
                                                     </div>
+                                                    <p>Test</p>
                                                 </div>
-                                                <p>Test</p>
-                                            </div>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- offset area end -->
-                        <!-- jquery latest version -->
-                        <script src="{{ asset('assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
-                        <!-- bootstrap 4 js -->
-                        <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-                        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-                        <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-                        <script src="{{ asset('assets/js/metisMenu.min.js') }}"></script>
-                        <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
-                        <script src="{{ asset('assets/js/jquery.slicknav.min.js') }}"></script>
+                            <!-- offset area end -->
+                            <!-- jquery latest version -->
+                            <script src="{{ asset('assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+                            <!-- bootstrap 4 js -->
+                            <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+                            <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+                            <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+                            <script src="{{ asset('assets/js/metisMenu.min.js') }}"></script>
+                            <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
+                            <script src="{{ asset('assets/js/jquery.slicknav.min.js') }}"></script>
 
-                        <!-- Start datatable js -->
-                        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-                        <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-                        <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
-                        <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-                        <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
-                        <!-- others plugins -->
-                        <script src="{{ asset('assets/js/plugins.js') }}"></script>
-                        <script src="{{ asset('assets/js/scripts.js') }}"></script>
+                            <!-- Start datatable js -->
+                            <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+                            <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+                            <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+                            <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+                            <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+                            <!-- others plugins -->
+                            <script src="{{ asset('assets/js/plugins.js') }}"></script>
+                            <script src="{{ asset('assets/js/scripts.js') }}"></script>
 </body>
 
 </html>

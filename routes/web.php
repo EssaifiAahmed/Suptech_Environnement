@@ -9,6 +9,7 @@ use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\uploadfiles;
 use App\Http\Controllers\uploadfiles_Inscr;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AbujadController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -255,6 +256,20 @@ Route::get('/{slug}/adminpanel', function ($slug) {
 
     return view('admin/Login');
 })->name('adminpanel');
+
+Route::get('/{slug}/abujadpanel', function ($slug) {
+    if ($slug == 'fr') {
+        App::setLocale($slug);
+        session()->put('locale', $slug);
+    } else if ($slug == 'ar') {
+        App::setLocale($slug);
+        session()->put('locale', $slug);
+    } else {
+        return redirect('/fr');
+    }
+
+    return view('abujad/Login_abujad');
+})->name('abujadpanel');
 
 /*  Route::get('/prepa1', function () {
 return view('filieres/prepa1');
@@ -845,6 +860,11 @@ Route::post('{slug}/login', [UserController::class, 'login_action'])->name('logi
 
 Route::post('{slug}/check', [UserController::class, 'check']);
 
+// Check credential  abujad
+Route::post('{slug}/loginabujad', [AbujadController::class, 'login_action_abujad'])->name('login.action.abujad');
+
+Route::post('{slug}/checkabujad', [AbujadController::class, 'check']);
+
 // Route::get('{slug}/home', [@App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route::get('{slug}/contacta', [ContactController::class, 'show']);
@@ -866,10 +886,12 @@ Route::delete('{slug}/requests{id}', [InscriptionController::class, 'DeleteRegis
 Route::delete('{slug}/DeleteRegisterBourse_{id}', [BourseController::class, 'DeleteRegisterBourse'])->name('DeleteRegisterBourse');
 
 Route::get('{slug}/panel', [UserController::class, 'CheckUserpanel'])->name('panel');
+Route::get('{slug}/panelAbujad', [AbujadController::class, 'CheckAbujadpanel'])->name('panelAbujad');
 
 Route::get('{slug}/contacta', [ContactController::class, 'Checkcontactpanel'])->name('contacta');
 
 Route::get('{slug}/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('{slug}/logout_abujad', [AbujadController::class, 'logout_abujad'])->name('logout_abujad');
 
 Route::delete('{slug}/ajoutimage{id}', [ImageController::class, 'DeleteImage'])->name('ajoutimage.DeleteImage');
 
