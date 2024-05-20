@@ -121,17 +121,17 @@
                                                     <th>Numero</th>
                                                     <th>Numero d'inscription</th>
                                                     <th>Nom | prénom</th>
-                                                    <th>CNI</th>
+                                                    {{-- <th>CNI</th>
                                                     <th>Code Massar</th>
-                                                    <th>Date De Naissance</th>
+                                                    <th>Date De Naissance</th> --}}
                                                     <th>Email</th>
                                                     <th>Télephone</th>
                                                     <th>Filiere</th>
-                                                    <th>Dernier diplôme obtenu </th>
+                                                    {{-- <th>Dernier diplôme obtenu </th>
                                                     <th>Sexe </th>
-                                                    <th>Nationalité </th>
+                                                    <th>Nationalité </th> --}}
                                                     <th>Ville </th>
-                                                    <th>Adresse </th>
+                                                    {{-- <th>Adresse </th> --}}
                                                     <th>Date d'envoi </th>
                                                     <th>Source </th>
                                                     <th>Relevés de notes </th>
@@ -144,21 +144,29 @@
                                                 @foreach ($data as $data)
                                                     <tr>
                                                         <td>{{ $val++ }} </td>
-                                                        <td>{{ $data->code_inscription}} </td>
+                                                        <td>{{ $data->code_inscription }} </td>
                                                         <td>{{ $data->Nom }} {{ $data->Prenom }} </td>
-                                                        <td>{{ $data->cni }}</td>
+                                                        {{-- <td>{{ $data->cni }}</td>
                                                         <td>{{ $data->CIN_MASSAR }}</td>
-                                                        <td>{{ $data->date_naissance }}</td>
+                                                        <td>{{ $data->date_naissance }}</td> --}}
                                                         <td>{{ $data->Email }}</td>
                                                         <td>{{ $data->Tele }}</td>
                                                         <td>{{ $data->Filiere }}</td>
-                                                        <td>{{ $data->dip }}</td>
+                                                        {{-- <td>{{ $data->dip }}</td>
                                                         <td>{{ $data->Sexe }}</td>
-                                                        <td>{{ $data->nat }}</td>
+                                                        <td>{{ $data->nat }}</td> --}}
                                                         <td>{{ $data->ville }}</td>
-                                                        <td>{{ $data->Adresse }}</td>
+                                                        {{-- <td>{{ $data->Adresse }}</td> --}}
                                                         <td>{{ $data->created_at }}</td>
-                                                        <td>{{ $data->tsrc }} </td>
+                                                        <td>
+                                                            @if ($data->tsrc == '')
+                                                                <span class="badge bg-warning  text-dark">Aucune
+                                                                    source</span>
+                                                            @else
+                                                                <span
+                                                                    class="badge bg-info text-dark">{{ $data->tsrc }}</span>
+                                                            @endif
+                                                        </td>
 
                                                         <td>
                                                             @if ($data->fichier_notes == 'true')

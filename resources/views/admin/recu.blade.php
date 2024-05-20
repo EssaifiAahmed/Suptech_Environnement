@@ -86,7 +86,7 @@
 			<td>{{ $request->Nom }} {{ $request->Prenom }}</td>
 		</tr>
 		
-		<tr>
+		{{-- <tr>
 			<td id="header">Sexe:</td>
 			<td>{{ $request->Sexe }}</td>
 		</tr>
@@ -104,7 +104,7 @@
 		<tr>
 			<td id="header">Nationalité:</td>
 			<td>{{ $request->nat }}</td>
-		</tr>
+		</tr> --}}
 		
 		<tr>
 			 <td id="header">Email:</td>
@@ -116,10 +116,10 @@
 			<td>{{ $request->Tele }}</td>
 		</tr>
 		
-		<tr>
+		{{-- <tr>
 			<td id="header" >Dernier Diplôme obtenu / En cours:</td>
 			<td>{{ $request->dip }}</td>
-		</tr>
+		</tr> --}}
 		
 		<tr>
 			<td id="header" >Filière:</td>

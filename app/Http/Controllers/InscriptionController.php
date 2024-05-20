@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PDF;
 
-
 class InscriptionController extends Controller
 {
 
@@ -92,31 +91,42 @@ class InscriptionController extends Controller
         $Check_Inscription_massar = bourses::where('cin_massar', $request->cin_massar)->first();
         $code_inscription = DB::table('inscrires')->pluck('code_inscription')->last();
 
-        if (!$Check_Inscription_cne && !$Check_Inscription_massar) {
-            $bourses = new bourses;
+        if ($Check_Inscription_cne && $Check_Inscription_massar) {
+            // Return an error response if the email is already registered
+            return response()->json([
+                'error' => session()->get('locale') == 'fr' ? "Vous êtes déjà inscrit" : "أنت بالفعل مسجل مسبقا في المدرسة",
+            ], 409); // 409 Conflict is a more appropriate status code for duplicate entries
+        }
 
-            $bourses->code_inscription = $code_inscription;
-            $bourses->Nom = $request->Nom;
-            $bourses->email = $request->email;
-            $bourses->cne = $request->cin;
-            $bourses->date_naissance = $request->date_naissance;
-            $bourses->telephone = $request->telephone;
-            $bourses->nom_pere_complet = $request->nom_pere_complet;
-            $bourses->cin_massar = $request->cin_massar;
-            $bourses->adresse = $request->adresse;
-            $bourses->profession = $request->profession;
-            $bourses->nom_mere_complet = $request->ncm;
-            $bourses->profession_mere = $request->profession_mere;
-            $bourses->nom_tuteur_complet = $request->nct;
-            $bourses->profession_tuteur = $request->profession_tuteur;
+        $bourses = new bourses;
+        $bourses->code_inscription = $code_inscription;
+        $bourses->Nom = $request->Nom;
+        $bourses->email = $request->email;
+        $bourses->cne = $request->cin;
+        $bourses->date_naissance = $request->date_naissance;
+        $bourses->telephone = $request->telephone;
+        $bourses->nom_pere_complet = $request->nom_pere_complet;
+        $bourses->cin_massar = $request->cin_massar;
+        $bourses->adresse = $request->adresse;
+        $bourses->profession = $request->profession;
+        $bourses->nom_mere_complet = $request->ncm;
+        $bourses->profession_mere = $request->profession_mere;
+        $bourses->nom_tuteur_complet = $request->nct;
+        $bourses->profession_tuteur = $request->profession_tuteur;
 
-            $bourses->save();
+        $bourses->save();
 
-            // Generate PDF
-            $code_inscription_recu = DB::table('bourses')->pluck('code_inscription')->last();
-            $pdf = PDF::loadView('recu_bourse', ['request' => $request, 'code_inscription_recu' => $code_inscription_recu]);
-            return $pdf->download('recu_bourse.pdf');
-        } 
+        // Generate PDF
+        $code_inscription_recu = DB::table('bourses')->pluck('code_inscription')->last();
+        $pdf = PDF::loadView('recu_bourse', ['request' => $request, 'code_inscription_recu' => $code_inscription_recu]);
+
+        // Return a success response with the PDF and message
+        return response()->json([
+            'recu_bourse' => base64_encode($pdf->output()),
+            'message' => session()->get('locale') == 'fr' ?
+            "Vous êtes désormais inscrit à la bourse" :
+            "لقد تم تسجيلك بنجاح",
+        ], 200);
     }
 
     public function CheckUserLoginBourse()

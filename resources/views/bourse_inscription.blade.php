@@ -216,7 +216,7 @@
                                 <div class="msg"> {{ __('messages.inscrire') }} </div>
                             </button>
                         </div>
-                        {{-- <div class="alert alert-success alert-dismissible fade show  m-auto mt-5"
+                        <div class="alert alert-success alert-dismissible fade show  m-auto mt-5"
                             style="width:50%; display:none;" id="succes1" role="alert">
                             <strong>
                                 {{ __('messages.success') }}</strong>{{ __('messages.successMsg') }}
@@ -225,7 +225,7 @@
                             style="width:50% ; display:none;" id="danger" role="alert">
                             <strong>{{ __('messages.echec') }}</strong>
                             {{ __('messages.erreurMsg') }}
-                        </div> --}}
+                        </div>
                     </form>
                 </div>
             </div>
@@ -254,6 +254,192 @@
     <script>
         var loader = document.querySelector('.loader');
         var msg = document.querySelector('.msg');
+        // Hide the <div> element by setting its "display" CSS property to "none"
+        loader.style.display = 'none';
+        msg.style.display = 'block';
+
+
+        $("#succes1").hide();
+
+        $("#danger").hide();
+
+        $("#OrderInfo").on("submit", function(e) {
+
+            loader.style.display = 'block';
+            msg.style.display = 'none';
+            $.ajax({
+                type: "POST",
+
+                url: "{{ route('InsertTest', ['slug' => App::getLocale()]) }}",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: 'json',
+                success: function(response) {
+                    $("#succes1").hide();
+                    $("#danger").hide();
+
+
+
+
+
+
+                    if (response.hasOwnProperty('message_deja')) {
+
+
+                        $("#danger").show();
+                        //alert(response.message);
+                        document.getElementById('danger').innerText = response.message_deja;
+
+                    }
+
+
+
+                    if (response.hasOwnProperty('message')) {
+
+                        $("#succes1").show();
+                        //alert(response.message);
+                        document.getElementById('succes1').innerText = response.message;
+                        // document.getElementById('succes1').innerHTML += response.message_bourse;
+
+                        if (response.hasOwnProperty('pdf_inscription') && response.hasOwnProperty(
+                                'pdf_bourse')) {
+                            if (response.hasOwnProperty('message_bourse')) {
+
+                                document.getElementById('succes1').innerHTML +=
+                                    "<br><br> <p> {{ __('messages.RecuDetailsText') }} </p> <br> <h3> {{ __('messages.DocumentsEtudiant') }}  </h3><br><p>    {{ __('messages.CNI') }} .<br> {{ __('messages.FDB') }} .<br> </p> ";
+                                document.getElementById('succes1').innerHTML +=
+                                    "<br> <h3> {{ __('messages.ppd') }}  </h3><br> " + response
+                                    .message_bourse;
+                                document.getElementById('succes1').innerHTML +=
+                                    "<br><br> <p> {{ __('messages.RecuDetailsFooterText1') }} <a href='https://suptech-sante.ma/fr/Suivi' target='_blank'>{{ __('messages.Click') }}</a> {{ __('messages.RecuDetailsFooterTextContinue') }} <br> {{ __('messages.RecuDetailsFooterText2') }} <br> {{ __('messages.RecuDetailsFooterText3') }} </p><br> ";
+                            }
+
+                            var pdfData = atob(response.pdf_inscription);
+                            var pdfArray = new Uint8Array(pdfData.length);
+                            for (var i = 0; i < pdfData.length; i++) {
+                                pdfArray[i] = pdfData.charCodeAt(i);
+                            }
+                            // Create a blob from the decoded PDF data
+                            var blob = new Blob([pdfArray], {
+                                type: 'application/pdf'
+                            });
+                            var url = URL.createObjectURL(blob);
+                            var link = document.createElement('a');
+                            link.href = url;
+                            link.download = 'reçu_inscription.pdf';
+                            link.click();
+
+
+
+                            var pdfData = atob(response.pdf_bourse);
+                            var pdfArray = new Uint8Array(pdfData.length);
+                            for (var i = 0; i < pdfData.length; i++) {
+                                pdfArray[i] = pdfData.charCodeAt(i);
+
+                            }
+                            // Create a blob from the decoded PDF data
+                            var blob = new Blob([pdfArray], {
+                                type: 'application/pdf'
+                            });
+                            var url = URL.createObjectURL(blob);
+                            var link = document.createElement('a');
+                            link.href = url;
+                            link.download = 'pdf_bourse.pdf';
+                            link.click();
+
+
+
+                        }
+
+
+
+
+                        if (response.hasOwnProperty('pdf_bourse') && !response.hasOwnProperty(
+                                'pdf_inscription')) {
+                            document.getElementById('succes1').innerHTML +=
+                                "<br><br> <p> {{ __('messages.RecuDetailsText') }} </p> <br> <h3> {{ __('messages.DocumentsEtudiant') }}  </h3><br><p>    {{ __('messages.CNI') }} .<br> {{ __('messages.FDB') }} .<br> </p> ";
+                            document.getElementById('succes1').innerHTML +=
+                                "<br> <h3> {{ __('messages.ppd') }}  </h3><br> " + response
+                                .message_bourse;
+                            document.getElementById('succes1').innerHTML +=
+                                "<br><br> <p> {{ __('messages.RecuDetailsFooterText1') }} <a href='https://suptech-sante.ma/fr/Suivi' target='_blank'>{{ __('messages.Click') }}</a> {{ __('messages.RecuDetailsFooterTextContinue') }} <br> {{ __('messages.RecuDetailsFooterText2') }} <br> {{ __('messages.RecuDetailsFooterText3') }} </p><br> ";
+
+
+                            var pdfData = atob(response.pdf_bourse);
+                            var pdfArray = new Uint8Array(pdfData.length);
+                            for (var i = 0; i < pdfData.length; i++) {
+                                pdfArray[i] = pdfData.charCodeAt(i);
+
+                            }
+                            // Create a blob from the decoded PDF data
+                            var blob = new Blob([pdfArray], {
+                                type: 'application/pdf'
+                            });
+                            var url = URL.createObjectURL(blob);
+                            var link = document.createElement('a');
+                            link.href = url;
+                            link.download = 'reçu_bourse.pdf';
+                            link.click();
+                        }
+
+
+
+                        if (!response.hasOwnProperty('pdf_bourse') && response.hasOwnProperty(
+                                'pdf_inscription')) {
+
+                            document.getElementById('succes1').innerText = response.message;
+
+                            var pdfData = atob(response.pdf_inscription);
+                            var pdfArray = new Uint8Array(pdfData.length);
+                            for (var i = 0; i < pdfData.length; i++) {
+                                pdfArray[i] = pdfData.charCodeAt(i);
+
+                            }
+                            // Create a blob from the decoded PDF data
+                            var blob = new Blob([pdfArray], {
+                                type: 'application/pdf'
+                            });
+                            var url = URL.createObjectURL(blob);
+                            var link = document.createElement('a');
+                            link.href = url;
+                            link.download = 'reçu_inscription.pdf';
+                            link.click();
+
+
+
+                        }
+
+
+
+                        document.getElementById("OrderInfo").reset();
+
+
+                        loader.style.display = 'none';
+                        msg.style.display = 'block';
+
+
+                    }
+                    loader.style.display = 'none';
+                    msg.style.display = 'block';
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr);
+                    loader.style.display = 'none';
+                    msg.style.display = 'block';
+
+                    $("#danger").show();
+
+                }
+            });
+            e.preventDefault();
+        });
+    </script>
+
+    <script>
+        var loader = document.querySelector('.loader');
+        var msg = document.querySelector('.msg');
 
         function toogleInput() {
             var selectValue = document.getElementById("mySeleprofession_tuteur").value;
@@ -274,15 +460,15 @@
 
     <script>
         /* Show/hide the "other" input based on the selected option
-                          const select = document.getElementById("mySelect");
-                          const otherOption = document.getElementById("otherOption");
-                          select.addEventListener("change", function() {
-                            if (select.value === "other") {
-                              otherOption.style.display = "block";
-                            } else {
-                              otherOption.style.display = "none";
-                            }
-                          });*/
+                              const select = document.getElementById("mySelect");
+                              const otherOption = document.getElementById("otherOption");
+                              select.addEventListener("change", function() {
+                                if (select.value === "other") {
+                                  otherOption.style.display = "block";
+                                } else {
+                                  otherOption.style.display = "none";
+                                }
+                              });*/
     </script>
     <script>
         $(".changeLang").change(function() {

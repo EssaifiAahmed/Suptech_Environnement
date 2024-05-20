@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Inscrire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use PDF;
 
@@ -14,69 +13,48 @@ class InscriptionCompleteController extends Controller
 
     public function Insert(Request $request)
     {
-        $flag_inscription = false;
-        $Check_Inscription = Inscrire::where('CIN_MASSAR', $request->input('cin_massar'))
-            ->where('Filiere', $request->input('Sectors'))
-            ->first();
+        // Generate a new inscription code
         $code_inscription = date('dmY') . substr(str_shuffle(MD5(microtime())), 0, 4);
 
-        if (!$Check_Inscription) {
-            $Inscrire = new Inscrire;
-            $Inscrire->code_inscription = $code_inscription;
-            $Inscrire->Nom = $request->Nom;
-            $Inscrire->Prenom = $request->Prenom;
-            $Inscrire->cni = $request->cin;
-            $Inscrire->date_naissance = $request->yyyy . '-' . $request->mm . '-' . $request->dd;
-            $Inscrire->CIN_MASSAR = $request->cin_massar;
-            $Inscrire->Email = $request->email;
-            $Inscrire->Tele = $request->telephone;
-            $Inscrire->Sexe = $request->Sexe;
-            $Inscrire->Filiere = $request->Sectors;
-            $Inscrire->bourse = $request->select_bourse;
-            $Inscrire->dip = $request->dip;
-            $Inscrire->nat = $request->nat;
-            $Inscrire->ville = $request->Ville;
-            $Inscrire->Adresse = $request->adresse;
-            if ($request->tsrc == 'facebook' || $request->tsrc == 'instagram' || $request->tsrc == 'linkedin' || $request->tsrc == 'abujad') {
-                $Inscrire->tsrc = $request->tsrc;
-            } else {
-                $Inscrire->tsrc = null;
-            }
-            $Inscrire->save();
-            $code_inscription_recu_inscri = DB::table('inscrires')->pluck('code_inscription')->last();
-            $pdf_inscription = PDF::loadView('recu_inscri_with_bource', ['request' => $request, 'code_inscription_recu_inscri' => $code_inscription_recu_inscri]);
-            $flag_inscription = true;
-            if ($flag_inscription) {
-                if (session()->get('locale') == 'fr') {
-                    return response()->json([
-                        'pdf_inscription' => base64_encode($pdf_inscription->output()),
-                        // 'pdf_bourse' => base64_encode($pdf_bourse->output()),
-                        'message' => "Vous êtes bien inscrit vous pouvez s'inscrire au bourse avec votre code d'inscription",
-                        // 'message_bourse'=>$message_bourse
-                    ], 200);
-                }
+        // Check if an inscription with the same email already exists
+        $Check_Inscription = Inscrire::where('Nom', $request->Nom)
+        ->where('Prenom', $request->Prenom)
+        ->where('Email', $request->email)
+        ->where('Filiere', $request->Sectors)
+        ->first();
 
-                if (session()->get('locale') == 'ar') {
-                    return response()->json([
-                        'pdf_inscription' => base64_encode($pdf_inscription->output()),
-                        // 'pdf_bourse' => base64_encode($pdf_bourse->output()),
-                        'message' => 'تم تقديم طلبكم يمكنكم التسجيل في المنحة إعتمادا على رقم التسجيل الخاص بكم',
-                        // 'message_bourse'=>$message_bourse
-                    ], 200);
-                }
-            } else {
-
-                if (session()->get('locale') == 'fr') {
-                    return response()->json([
-                        'message_deja' => "Vous êtes déja inscrit",
-                    ], 200);
-                }
-                if (session()->get('locale') == 'ar') {return response()->json([
-                    'message_deja' => "أنت بالفعل مسجل مسبقا في المدرسة",
-                ], 200);}
-            }
+        if ($Check_Inscription) {
+            // Return an error response if the email is already registered
+            return response()->json([
+                'error' => session()->get('locale') == 'fr' ? "Vous êtes déjà inscrit" : "أنت بالفعل مسجل مسبقا في المدرسة",
+            ], 409); // 409 Conflict is a more appropriate status code for duplicate entries
         }
+
+        // Create a new inscription
+        $Inscrire = new Inscrire;
+        $Inscrire->code_inscription = $code_inscription;
+        $Inscrire->Nom = $request->Nom;
+        $Inscrire->Prenom = $request->Prenom;
+        $Inscrire->Email = $request->email;
+        $Inscrire->Tele = $request->telephone;
+        $Inscrire->Filiere = $request->Sectors;
+        $Inscrire->bourse = $request->select_bourse;
+        $Inscrire->ville = $request->Ville;
+        $Inscrire->tsrc = in_array($request->tsrc, ['facebook', 'instagram', 'linkedin', 'abujad']) ? $request->tsrc : null;
+        $Inscrire->save();
+
+        // Generate the PDF receipt
+        $pdf_inscription = PDF::loadView('recu_inscri_with_bource', ['request' => $request, 'code_inscription_recu_inscri' => $code_inscription]);
+
+        // Return a success response with the PDF and message
+        return response()->json([
+            'pdf_inscription' => base64_encode($pdf_inscription->output()),
+            'message' => session()->get('locale') == 'fr' ?
+            "Vous êtes désormais inscrit. Pour vous inscrire à la bourse, utilisez le code d'inscription figurant sur le reçu qui sera automatiquement téléchargé après votre pré-inscription." :
+            "لقد تم تسجيلك بنجاح. يمكنك التسجيل في المنحة باستخدام رمز التسجيل الموجود في الإيصال الذي سيتم تنزيله تلقائيًا بعد التسجيل المبدئي",
+        ], 200);
     }
+
     public function CheckUserInscrit(Request $request)
     {
 

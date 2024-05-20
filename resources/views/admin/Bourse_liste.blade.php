@@ -156,7 +156,15 @@
                                                         <td>{{ $data->profession }}</td>
                                                         <td>{{ $data->nom_mere_complet }} </td>
                                                         <td>{{ $data->profession_mere }} </td>
-                                                        <td>{{ $data->nom_tuteur_complet }} </td>
+                                                        <td>
+                                                            @if ($data->nom_tuteur_complet == '')
+                                                                <span class="badge bg-warning  text-dark">Aucun
+                                                                    tuteur</span>
+                                                            @else
+                                                                <span
+                                                                    class="badge bg-info text-dark">{{ $data->nom_tuteur_complet }}</span>
+                                                            @endif
+                                                        </td>
                                                         <td>{{ $data->profession_tuteur }} </td>
                                                         <td>
                                                             @if ($data->fichier_complets == 'true')

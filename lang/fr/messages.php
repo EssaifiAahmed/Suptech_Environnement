@@ -137,7 +137,7 @@
           'Sexe'=>'Sexe',
           'Homme'=>'Homme',
           'Femme' => 'Femme',
-          'erreurMsg'=> " Une erreur s'est produite! essayez plus tard",
+          'erreurMsg'=> " Vous êtes déjà inscrit",
           'echec' => "Erreur: ",
           'successMsg'=>' Votre Pré-inscription est effectuée avec succès!',
           'success'=>' Succès: ',

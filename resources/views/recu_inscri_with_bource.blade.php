@@ -98,11 +98,11 @@
             <td>{{ $request->input('Sexe') }}</td>
         </tr>
 
-        <tr>
+        {{-- <tr>
             <td id="header">CIN /Code Massar / N° Passeport:</td>
             <td>{{ $request->input('cin_massar') }}</td>
-        </tr>
-
+        </tr> --}}
+{{-- 
         <tr>
             <td id="header">Date de naissance:</td>
             @if ($request->input('date_naissance'))
@@ -115,12 +115,12 @@
         <tr>
             <td id="header">Adresse:</td>
             <td>{{ $request->input('adresse') }}</td>
-        </tr>
+        </tr> --}}
 
-        <tr>
+        {{-- <tr>
             <td id="header">Nationalité:</td>
             <td>{{ $request->input('nat') }}</td>
-        </tr>
+        </tr> --}}
 
         <tr>
             <td id="header">Email:</td>
@@ -132,10 +132,10 @@
             <td>{{ $request->input('telephone') }}</td>
         </tr>
 
-        <tr>
+        {{-- <tr>
             <td id="header">Dernier Diplôme obtenu / En cours:</td>
             <td>{{ $request->input('dip') }}</td>
-        </tr>
+        </tr> --}}
 
         <tr>
             <td id="header">Filière:</td>
